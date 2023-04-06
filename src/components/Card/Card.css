@@ -1,0 +1,88 @@
+.card {
+  border-radius: 0.375rem;
+  background-color: #343438;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  max-width: 350px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.channel-warper-a {
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+  border-radius: 0.375rem;
+  padding: 0.7rem 1rem;
+}
+
+.channel-warper-a:hover {
+  background-color: #59595a;
+}
+
+.border {
+  content: "";
+  height: 1px;
+  width: 350px;
+  max-width: 95%;
+  background-color: #59595a;
+}
+
+.channel-warper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  overflow-x: hidden;
+}
+
+.channel-warper img {
+  border-radius: 50%;
+  max-width: 2.5rem;
+}
+
+.channel-warper h2 {
+  color: white;
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
+.text-overflow {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.video-warper {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.thimbnail {
+  position: relative;
+}
+
+.thimbnail img {
+  border-radius: 0.375rem;
+}
+
+.video-warper h2 {
+  color: white;
+  font-size: 1rem;
+}
+
+.video-date {
+  text-align: right;
+  color: white;
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 0.2rem 0.2rem;
+  border-radius: 0.375rem;
+}
