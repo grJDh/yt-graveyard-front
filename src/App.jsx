@@ -13,6 +13,7 @@ const App = () => {
   const [numberValue, setNumberValue] = useState(6);
   const [dropdownValue, setDropdownValue] = useState("month(s)");
 
+  // filter data based on dropdown value and number value
   const filterData = data => {
     const filteredData = data.filter(element => {
       const uploadDate = DateTime.fromISO(element.lastVideoDate);
@@ -33,6 +34,7 @@ const App = () => {
     return filteredData;
   };
 
+  // sort data based on last video date
   const sortData = data => {
     const sortedData = data.sort((a, b) => {
       const aDate = DateTime.fromISO(a.lastVideoDate);
@@ -46,6 +48,7 @@ const App = () => {
     return sortedData;
   };
 
+  //slider steps
   const sliderSteps = [
     "1 week(s)",
     "2 week(s)",
@@ -70,8 +73,10 @@ const App = () => {
     "5 year(s)",
   ];
 
+  // dropdown options
   const dateOptions = ["week(s)", "month(s)", "year(s)"];
 
+  // update filtered and sorted data when dropdown or number value changes
   useEffect(() => {
     const debounceDelay = setTimeout(() => {
       setFilteredAndSortedData(sortData(filterData(subsData)));
@@ -80,6 +85,7 @@ const App = () => {
     return () => clearTimeout(debounceDelay);
   }, [numberValue, dropdownValue]);
 
+  // set number value and dropdown value based on slider value
   const handleSetNumberValue = value => {
     const sliderValue = sliderSteps[value];
     const numInputValue = parseInt(sliderValue.substring(0, sliderValue.indexOf(" ")));
@@ -112,14 +118,11 @@ const App = () => {
   //     .then(response => console.log(JSON.stringify(response)));
   // }, []);
 
-  console.log(numberValue.toString() + " " + dropdownValue);
-
   return (
     <div className="App">
       <div className="controls">
         <Slider
           handleSetNumberValue={handleSetNumberValue}
-          // numberValue={numberValue}
           currentStep={sliderSteps.indexOf(numberValue.toString() + " " + dropdownValue)}
         />
         <input
@@ -147,14 +150,19 @@ const App = () => {
             checked={isAscending}
             onChange={() => setIsAscending(prevValue => !prevValue)}
           />
-          <p>Reverse order</p>
         </label>
       </div>
-      <div className="card-grid">
-        {(isAscending ? filteredAndSortedData.slice().reverse() : filteredAndSortedData).map((data, i) => (
+      <div className="cards-grid">
+        {filteredAndSortedData.map((element, i) => (
           <Card
-            data={data}
             key={i}
+            channelId={element.channelId}
+            thumbnail={element.thumbnail}
+            title={element.title}
+            lastVideoID={element.lastVideoID}
+            lastVideoThumbnail={element.lastVideoThumbnail}
+            lastVideoTitle={element.lastVideoTitle}
+            lastVideoDate={element.lastVideoDate}
           />
         ))}
       </div>
