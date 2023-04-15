@@ -8,13 +8,14 @@ import subsData from "./response.json";
 import Slider from "./components/Slider/Slider";
 
 const App = () => {
+  const [page, setPage] = useState("start");
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
   const [isAscending, setIsAscending] = useState(true);
   const [numberValue, setNumberValue] = useState(6);
   const [dropdownValue, setDropdownValue] = useState("month(s)");
 
   // filter data based on dropdown value and number value
-  const filterData = data => {
+  const filterData = async data => {
     const filteredData = data.filter(element => {
       const uploadDate = DateTime.fromISO(element.lastVideoDate);
       let difference = {};
@@ -35,8 +36,8 @@ const App = () => {
   };
 
   // sort data based on last video date
-  const sortData = data => {
-    const sortedData = data.sort((a, b) => {
+  const sortData = async data => {
+    const sortedData = [...data].sort((a, b) => {
       const aDate = DateTime.fromISO(a.lastVideoDate);
       const bDate = DateTime.fromISO(b.lastVideoDate);
 
@@ -53,7 +54,6 @@ const App = () => {
     "1 week(s)",
     "2 week(s)",
     "3 week(s)",
-    "4 week(s)",
     "1 month(s)",
     "2 month(s)",
     "3 month(s)",
@@ -65,7 +65,6 @@ const App = () => {
     "9 month(s)",
     "10 month(s)",
     "11 month(s)",
-    "12 month(s)",
     "1 year(s)",
     "2 year(s)",
     "3 year(s)",
@@ -77,10 +76,22 @@ const App = () => {
   const dateOptions = ["week(s)", "month(s)", "year(s)"];
 
   // update filtered and sorted data when dropdown or number value changes
+  // useEffect(() => {
+  //   const debounceDelay = setTimeout(() => {
+  //     setFilteredAndSortedData(sortData(filterData(subsData)));
+  //   }, 1000);
+
+  //   return () => clearTimeout(debounceDelay);
+  // }, [numberValue, dropdownValue]);
+
   useEffect(() => {
-    const debounceDelay = setTimeout(() => {
-      setFilteredAndSortedData(sortData(filterData(subsData)));
-    }, 1000);
+    const updateData = async () => {
+      const filteredData = await filterData(subsData);
+      const sortedData = await sortData(filteredData);
+      setFilteredAndSortedData(sortedData);
+    };
+
+    const debounceDelay = setTimeout(updateData, 1000);
 
     return () => clearTimeout(debounceDelay);
   }, [numberValue, dropdownValue]);
@@ -118,56 +129,73 @@ const App = () => {
   //     .then(response => console.log(JSON.stringify(response)));
   // }, []);
 
-  return (
-    <div className="App">
-      <div className="controls">
-        <Slider
-          handleSetNumberValue={handleSetNumberValue}
-          currentStep={sliderSteps.indexOf(numberValue.toString() + " " + dropdownValue)}
-        />
-        <input
-          min={0}
-          type="number"
-          value={numberValue}
-          onChange={e => setNumberValue(e.target.value)}
-        />
-        <select
-          onChange={e => setDropdownValue(e.target.value)}
-          value={dropdownValue}
-        >
-          {dateOptions.map((option, i) => (
-            <option
-              key={i}
-              value={option}
-            >
-              {option}
-            </option>
-          ))}
-        </select>
-        <label>
-          <input
-            type="checkbox"
-            checked={isAscending}
-            onChange={() => setIsAscending(prevValue => !prevValue)}
-          />
-        </label>
-      </div>
-      <div className="cards-grid">
-        {filteredAndSortedData.map((element, i) => (
-          <Card
-            key={i}
-            channelId={element.channelId}
-            thumbnail={element.thumbnail}
-            title={element.title}
-            lastVideoID={element.lastVideoID}
-            lastVideoThumbnail={element.lastVideoThumbnail}
-            lastVideoTitle={element.lastVideoTitle}
-            lastVideoDate={element.lastVideoDate}
-          />
-        ))}
-      </div>
-    </div>
-  );
+  //https://www.youtube.com/account_privacy
+
+  const renderContent = () => {
+    switch (page) {
+      case "start":
+        return (
+          <div className="start-page">
+            Welcome!
+            <button onClick={() => setPage("grid")}>Start</button>
+          </div>
+        );
+      default:
+        return (
+          <div className="main-content-wrapper">
+            <div className="controls">
+              <Slider
+                handleSetNumberValue={handleSetNumberValue}
+                currentStep={sliderSteps.indexOf(numberValue.toString() + " " + dropdownValue)}
+              />
+              <input
+                min={0}
+                type="number"
+                value={numberValue}
+                onChange={e => setNumberValue(e.target.value)}
+              />
+              <select
+                onChange={e => setDropdownValue(e.target.value)}
+                value={dropdownValue}
+              >
+                {dateOptions.map((option, i) => (
+                  <option
+                    key={i}
+                    value={option}
+                  >
+                    {option}
+                  </option>
+                ))}
+              </select>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={isAscending}
+                  onChange={() => setIsAscending(prevValue => !prevValue)}
+                />
+                Reverse sorting
+              </label>
+            </div>
+            <div className="cards-grid">
+              {(isAscending ? [...filteredAndSortedData].reverse() : filteredAndSortedData).map((element, i) => (
+                <Card
+                  key={i}
+                  channelId={element.channelId}
+                  thumbnail={element.thumbnail}
+                  title={element.title}
+                  lastVideoID={element.lastVideoID}
+                  lastVideoThumbnail={element.lastVideoThumbnail}
+                  lastVideoTitle={element.lastVideoTitle}
+                  lastVideoDate={element.lastVideoDate}
+                />
+              ))}
+            </div>
+          </div>
+        );
+    }
+  };
+
+  return <div className="App">{renderContent()}</div>;
 };
 
 export default App;

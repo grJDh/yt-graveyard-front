@@ -1,8 +1,8 @@
 import { DateTime } from "luxon";
 import "./Card.css";
+import { useEffect } from "react";
 
 const Card = ({ channelId, thumbnail, title, lastVideoID, lastVideoThumbnail, lastVideoTitle, lastVideoDate }) => {
-
   const formatDate = date => {
     const uploadDate = DateTime.fromISO(date);
     const difference = uploadDate.diffNow("days").toObject();
@@ -38,8 +38,6 @@ const Card = ({ channelId, thumbnail, title, lastVideoID, lastVideoThumbnail, la
       </a>
     </div>
   );
-
-
 };
 
 export default Card;
