@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { DateTime } from "luxon";
+
 import "./App.css";
 
 import subsData from "./response.json";
+
 import CardsGrid from "./pages/CardsGrid/CardsGrid";
-import Start from "./pages/Start/Start";
+import ChangeSettings from "./pages/ChangeSettings/ChangeSettings";
+import EnterChannelID from "./pages/EnterChannelID/EnterChannelID";
 
 const App = () => {
-  const [page, setPage] = useState("start");
+  const [page, setPage] = useState("change_settings");
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
   const [numberValue, setNumberValue] = useState(6);
   const [dropdownValue, setDropdownValue] = useState("month(s)");
@@ -79,12 +82,12 @@ const App = () => {
   //     .then(response => console.log(JSON.stringify(response)));
   // }, []);
 
-  //https://www.youtube.com/account_privacy
-
   const renderContent = () => {
     switch (page) {
-      case "start":
-        return <Start setPage={setPage} />;
+      case "change_settings":
+        return <ChangeSettings setPage={setPage} />;
+      case "enter_channel_id":
+        return <EnterChannelID setPage={setPage} />;
       default:
         return (
           <CardsGrid
