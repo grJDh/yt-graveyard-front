@@ -2,16 +2,16 @@
   border-radius: 0.375rem;
   background-color: var(--clr-main);
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  max-width: 350px;
+  /* max-width: 350px; */
 
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   flex-direction: column;
   gap: 0.2rem;
 }
 
-.channel-warper-a {
+.a-warper {
   display: flex;
   width: 100%;
   text-decoration: none;
@@ -19,7 +19,11 @@
   padding: 0.7rem 1rem;
 }
 
-.channel-warper-a:hover {
+.a-warper:has(.video-warper) {
+  justify-content: center;
+}
+
+.a-warper:hover {
   background-color: var(--clr-focus);
 }
 
@@ -46,28 +50,13 @@
 .channel-warper h2 {
   color: var(--clr-text);
   font-size: var(--text-channel-title);
-  white-space: nowrap;
-}
-
-.text-overflow {
-  overflow-x: hidden;
-  text-overflow: ellipsis;
 }
 
 .video-warper {
   display: flex;
-  justify-content: center;
   max-width: 100%;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.thumbnail {
-  position: relative;
-}
-
-.thumbnail img {
-  border-radius: var(--brd-rad);
 }
 
 .video-warper h2 {
@@ -75,12 +64,22 @@
   font-size: var(--text-video-title);
 }
 
+.thumbnail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnail img {
+  border-radius: var(--brd-rad);
+}
+
 .video-date {
   text-align: right;
   color: var(--clr-text);
   position: absolute;
-  bottom: 1px;
-  right: 1px;
+  bottom: 0px;
+  right: 0px;
 
   background-color: var(--clr-black-alpha);
   padding: 0.2rem 0.2rem;

@@ -2,15 +2,13 @@ import { useEffect, useState } from "react";
 import { DateTime } from "luxon";
 import "./App.css";
 
-import Card from "./components/Card/Card";
-
 import subsData from "./response.json";
-import Slider from "./components/Slider/Slider";
+import CardsGrid from "./pages/CardsGrid/CardsGrid";
+import Start from "./pages/Start/Start";
 
 const App = () => {
   const [page, setPage] = useState("start");
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
-  const [isAscending, setIsAscending] = useState(true);
   const [numberValue, setNumberValue] = useState(6);
   const [dropdownValue, setDropdownValue] = useState("month(s)");
 
@@ -49,41 +47,7 @@ const App = () => {
     return sortedData;
   };
 
-  //slider steps
-  const sliderSteps = [
-    "1 week(s)",
-    "2 week(s)",
-    "3 week(s)",
-    "1 month(s)",
-    "2 month(s)",
-    "3 month(s)",
-    "4 month(s)",
-    "5 month(s)",
-    "6 month(s)",
-    "7 month(s)",
-    "8 month(s)",
-    "9 month(s)",
-    "10 month(s)",
-    "11 month(s)",
-    "1 year(s)",
-    "2 year(s)",
-    "3 year(s)",
-    "4 year(s)",
-    "5 year(s)",
-  ];
-
-  // dropdown options
-  const dateOptions = ["week(s)", "month(s)", "year(s)"];
-
   // update filtered and sorted data when dropdown or number value changes
-  // useEffect(() => {
-  //   const debounceDelay = setTimeout(() => {
-  //     setFilteredAndSortedData(sortData(filterData(subsData)));
-  //   }, 1000);
-
-  //   return () => clearTimeout(debounceDelay);
-  // }, [numberValue, dropdownValue]);
-
   useEffect(() => {
     const updateData = async () => {
       const filteredData = await filterData(subsData);
@@ -95,20 +59,6 @@ const App = () => {
 
     return () => clearTimeout(debounceDelay);
   }, [numberValue, dropdownValue]);
-
-  // set number value and dropdown value based on slider value
-  const handleSetNumberValue = value => {
-    const sliderValue = sliderSteps[value];
-    const numInputValue = parseInt(sliderValue.substring(0, sliderValue.indexOf(" ")));
-
-    let dropdownValue = "month(s)";
-    if (sliderValue.includes("year(s)")) dropdownValue = "year(s)";
-    else if (sliderValue.includes("week(s)")) dropdownValue = "week(s)";
-    else dropdownValue = "month(s)";
-
-    setNumberValue(numInputValue);
-    setDropdownValue(dropdownValue);
-  };
 
   // useEffect(() => {
   //   setFilteredData(filterData(subsData));
@@ -134,63 +84,16 @@ const App = () => {
   const renderContent = () => {
     switch (page) {
       case "start":
-        return (
-          <div className="start-page">
-            Welcome!
-            <button onClick={() => setPage("grid")}>Start</button>
-          </div>
-        );
+        return <Start setPage={setPage} />;
       default:
         return (
-          <div className="main-content-wrapper">
-            <div className="controls">
-              <Slider
-                handleSetNumberValue={handleSetNumberValue}
-                currentStep={sliderSteps.indexOf(numberValue.toString() + " " + dropdownValue)}
-              />
-              <input
-                min={0}
-                type="number"
-                value={numberValue}
-                onChange={e => setNumberValue(e.target.value)}
-              />
-              <select
-                onChange={e => setDropdownValue(e.target.value)}
-                value={dropdownValue}
-              >
-                {dateOptions.map((option, i) => (
-                  <option
-                    key={i}
-                    value={option}
-                  >
-                    {option}
-                  </option>
-                ))}
-              </select>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={isAscending}
-                  onChange={() => setIsAscending(prevValue => !prevValue)}
-                />
-                Reverse sorting
-              </label>
-            </div>
-            <div className="cards-grid">
-              {(isAscending ? [...filteredAndSortedData].reverse() : filteredAndSortedData).map((element, i) => (
-                <Card
-                  key={i}
-                  channelId={element.channelId}
-                  thumbnail={element.thumbnail}
-                  title={element.title}
-                  lastVideoID={element.lastVideoID}
-                  lastVideoThumbnail={element.lastVideoThumbnail}
-                  lastVideoTitle={element.lastVideoTitle}
-                  lastVideoDate={element.lastVideoDate}
-                />
-              ))}
-            </div>
-          </div>
+          <CardsGrid
+            filteredAndSortedData={filteredAndSortedData}
+            dropdownValue={dropdownValue}
+            numberValue={numberValue}
+            setNumberValue={setNumberValue}
+            setDropdownValue={setDropdownValue}
+          />
         );
     }
   };

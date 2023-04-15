@@ -1,6 +1,5 @@
 import { DateTime } from "luxon";
 import "./Card.css";
-import { useEffect } from "react";
 
 const Card = ({ channelId, thumbnail, title, lastVideoID, lastVideoThumbnail, lastVideoTitle, lastVideoDate }) => {
   const formatDate = date => {
@@ -16,7 +15,7 @@ const Card = ({ channelId, thumbnail, title, lastVideoID, lastVideoThumbnail, la
     <div className="card">
       <a
         href={"https://www.youtube.com/channel/" + channelId}
-        className="channel-warper-a"
+        className="a-warper"
       >
         <div className="channel-warper">
           <img src={thumbnail} />
@@ -26,7 +25,7 @@ const Card = ({ channelId, thumbnail, title, lastVideoID, lastVideoThumbnail, la
       <span className="border"></span>
       <a
         href={"https://youtube.com/watch?v=" + lastVideoID}
-        className="channel-warper-a"
+        className="a-warper"
       >
         <div className="video-warper">
           <div className="thumbnail">
