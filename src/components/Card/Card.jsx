@@ -29,7 +29,7 @@ const Card = ({ channelId, thumbnail, title, lastVideoID, lastVideoThumbnail, la
         className="channel-warper-a"
       >
         <div className="video-warper">
-          <div className="thimbnail">
+          <div className="thumbnail">
             <img src={lastVideoThumbnail} />
             <span className="video-date">{formatDate(lastVideoDate)}</span>
           </div>
