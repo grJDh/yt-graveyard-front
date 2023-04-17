@@ -30,9 +30,9 @@ const Card = ({ channelId, thumbnail, title, lastVideoID, lastVideoThumbnail, la
         <div className="video-warper">
           <div className="thumbnail">
             <img src={lastVideoThumbnail} />
-            <span className="video-date">{formatDate(lastVideoDate)}</span>
+            <p className="video-date">{formatDate(lastVideoDate)}</p>
           </div>
-          <h2 className="text-overflow">{lastVideoTitle}</h2>
+          <p className="text-overflow">{lastVideoTitle}</p>
         </div>
       </a>
     </div>

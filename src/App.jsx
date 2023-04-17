@@ -6,11 +6,10 @@ import "./App.css";
 import subsData from "./response.json";
 
 import CardsGrid from "./pages/CardsGrid/CardsGrid";
-import ChangeSettings from "./pages/ChangeSettings/ChangeSettings";
-import EnterChannelID from "./pages/EnterChannelID/EnterChannelID";
+import ManualSteps from "./pages/ManualSteps/ManualSteps";
 
 const App = () => {
-  const [page, setPage] = useState("change_settings");
+  const [page, setPage] = useState("manual_privacy");
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
   const [numberValue, setNumberValue] = useState(6);
   const [dropdownValue, setDropdownValue] = useState("month(s)");
@@ -84,11 +83,7 @@ const App = () => {
 
   const renderContent = () => {
     switch (page) {
-      case "change_settings":
-        return <ChangeSettings setPage={setPage} />;
-      case "enter_channel_id":
-        return <EnterChannelID setPage={setPage} />;
-      default:
+      case "cards_grid":
         return (
           <CardsGrid
             filteredAndSortedData={filteredAndSortedData}
@@ -98,10 +93,22 @@ const App = () => {
             setDropdownValue={setDropdownValue}
           />
         );
+      default:
+        return (
+          <ManualSteps
+            page={page}
+            setPage={setPage}
+          />
+        );
     }
   };
 
-  return <div className="App">{renderContent()}</div>;
+  return (
+    <div className="App">
+      <h1>Youtube Graveyard ⚰️</h1>
+      {renderContent()}
+    </div>
+  );
 };
 
 export default App;

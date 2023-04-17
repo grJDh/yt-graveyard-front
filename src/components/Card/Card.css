@@ -28,7 +28,6 @@
 }
 
 .border {
-  content: "";
   height: 1px;
   width: 350px;
   max-width: 95%;
@@ -48,7 +47,6 @@
 }
 
 .channel-warper h2 {
-  color: var(--clr-text);
   font-size: var(--text-channel-title);
 }
 
@@ -59,8 +57,7 @@
   gap: 0.5rem;
 }
 
-.video-warper h2 {
-  color: var(--clr-text);
+.video-warper > p {
   font-size: var(--text-video-title);
 }
 
@@ -76,7 +73,6 @@
 
 .video-date {
   text-align: right;
-  color: var(--clr-text);
   position: absolute;
   bottom: 0px;
   right: 0px;

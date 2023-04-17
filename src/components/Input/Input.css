@@ -1,0 +1,23 @@
+label:has(input[type="text"]) {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+label:has(input[type="text"]) span {
+  color: var(--clr-text);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input[type="text"] {
+  background-color: var(--clr-main);
+  border: 0;
+  border-radius: 15px;
+  width: 15rem;
+  height: 3rem;
+  color: var(--clr-text);
+  font-size: 1rem;
+  padding: 0.5rem;
+}
