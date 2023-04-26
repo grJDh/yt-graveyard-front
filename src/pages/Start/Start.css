@@ -1,0 +1,56 @@
+:root {
+  --auth-color: rgba(255, 0, 0, 0.5);
+  --username-color: rgba(0, 0, 255, 0.5);
+  --auth-color-hover: rgba(255, 0, 0, 1);
+  --username-color-hover: rgba(0, 0, 255, 1);
+
+  --gradient-percent: 50%;
+}
+
+.start-container {
+  display: flex;
+  width: 100%;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+@media (min-width: 1000px) {
+  .start-container {
+    flex-direction: row;
+  }
+}
+
+.start-container > div {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.auth-choice {
+  background: var(--auth-color);
+  background: linear-gradient(270deg, var(--auth-color) var(--gradient-percent), rgba(0, 0, 0, 0) 100%);
+  flex: 1;
+}
+.auth-choice:hover {
+  background: linear-gradient(270deg, var(--auth-color-hover) var(--gradient-percent), rgba(0, 0, 0, 0) 100%);
+}
+
+.username-choice {
+  background: rgba(0, 0, 255, 0.5);
+  background: linear-gradient(90deg, var(--username-color) var(--gradient-percent), rgba(0, 0, 0, 0) 100%);
+  flex: 1;
+}
+.username-choice:hover {
+  background: linear-gradient(90deg, var(--username-color-hover) var(--gradient-percent), rgba(0, 0, 0, 0) 100%);
+}
+
+.start-container > div > h2 {
+  font-size: 2rem;
+}
+
+.start-container > div > p {
+  font-size: 1rem;
+}

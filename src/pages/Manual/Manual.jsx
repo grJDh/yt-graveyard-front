@@ -1,11 +1,48 @@
-import "./ManualSteps.css";
+import "./Manual.css";
 
 import yt_privacy from "../../assets/yt_privacy.png";
 
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import { useEffect, useState } from "react";
 
-const ManualSteps = ({ page, setPage }) => {
+const Manual = ({ page, setPage }) => {
+  const [serverStatus, setServerStatus] = useState(null);
+
+  useEffect(() => {
+    const checkServer = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/");
+        setServerStatus(response.status);
+      } catch (error) {
+        console.log(error);
+        setServerStatus(503);
+      }
+    };
+
+    checkServer();
+  }, []);
+
+  const checkForServerResponse = () => {
+    switch (serverStatus) {
+      case 200:
+        return renderContent();
+      case null:
+        return (
+          <div className="manual-steps">
+            <p>Checking for server availability...</p>
+            <div class="lds-dual-ring"></div>
+          </div>
+        );
+      default:
+        return (
+          <div className="manual-steps">
+            <p>Sorry, but the server is not responding. Please, try again later!</p>
+          </div>
+        );
+    }
+  };
+
   const renderContent = () => {
     switch (page) {
       case "manual_id":
@@ -48,7 +85,7 @@ const ManualSteps = ({ page, setPage }) => {
     }
   };
 
-  return renderContent();
+  return checkForServerResponse();
 };
 
-export default ManualSteps;
+export default Manual;

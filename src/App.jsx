@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import { DateTime } from "luxon";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Outlet } from "react-router-dom";
 
 import "./App.css";
 
 import subsData from "./response.json";
 
 import CardsGrid from "./pages/CardsGrid/CardsGrid";
-import ManualSteps from "./pages/ManualSteps/ManualSteps";
+import ManualSteps from "./pages/Manual/Manual";
+import Start from "./pages/Start/Start";
+import GoogleAuth from "./pages/GoogleAuth/GoogleAuth";
+import Loading from "./components/Loading/Loading";
 
 const App = () => {
   const [page, setPage] = useState("manual_privacy");
@@ -62,26 +67,16 @@ const App = () => {
     return () => clearTimeout(debounceDelay);
   }, [numberValue, dropdownValue]);
 
-  // useEffect(() => {
-  //   setFilteredData(filterData(subsData));
-  // }, [numberValue]);
-
-  // let myHeaders = new Headers();
-  // myHeaders.append("Content-Type", "application/json");
-
-  // const data = { channelID: channelID };
-
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/", {
-  //     method: "POST",
-  //     headers: myHeaders,
-  //     body: JSON.stringify(data),
-  //   })
-  //     .then(response => response.json())
-  //     .then(response => console.log(JSON.stringify(response)));
-  // }, []);
-
   const renderContent = () => {
+    /*
+      main - main menu
+      auth - google auth
+      manual_privacy - show how to disable privacy settings
+      manual_username - enter username or channelid
+      loading - showing loading spinner
+      cards_grid - showing result
+    */
+
     switch (page) {
       case "cards_grid":
         return (
@@ -106,7 +101,13 @@ const App = () => {
   return (
     <div className="App">
       <h1>Youtube Graveyard ⚰️</h1>
-      {renderContent()}
+      <Outlet />
+      {/* {renderContent()} */}
+      {/* <Start /> */}
+      {/* <Loading /> */}
+      {/* <GoogleOAuthProvider clientId="227087509653-vebn36qaass89cpfm6q76n2ri0vevvtk.apps.googleusercontent.com">
+        <GoogleAuth />
+      </GoogleOAuthProvider> */}
     </div>
   );
 };
