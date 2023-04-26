@@ -7,13 +7,10 @@ const CardsGrid = ({ filteredAndSortedData, dropdownValue, numberValue, setNumbe
   const [isAscending, setIsAscending] = useState(true);
 
   // dropdown options
-  const dateOptions = ["week(s)", "month(s)", "year(s)"];
+  const dateOptions = ["month(s)", "year(s)"];
 
   //slider steps
   const sliderSteps = [
-    "1 week(s)",
-    "2 week(s)",
-    "3 week(s)",
     "1 month(s)",
     "2 month(s)",
     "3 month(s)",
