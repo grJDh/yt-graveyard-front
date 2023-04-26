@@ -5,7 +5,7 @@ const Slider = ({ currentStep, handleSetNumberValue }) => {
       <input
         type="range"
         min={0}
-        max={20}
+        max={15}
         step={1}
         onChange={e => handleSetNumberValue(e.target.value)}
         value={currentStep}
