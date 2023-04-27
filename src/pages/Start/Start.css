@@ -20,7 +20,7 @@
   }
 }
 
-.start-container > div {
+.start-container a {
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -47,10 +47,10 @@
   background: linear-gradient(90deg, var(--username-color-hover) var(--gradient-percent), rgba(0, 0, 0, 0) 100%);
 }
 
-.start-container > div > h2 {
+.start-container h2 {
   font-size: 2rem;
 }
 
-.start-container > div > p {
+.start-container p {
   font-size: 1rem;
 }

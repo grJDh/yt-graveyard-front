@@ -30,6 +30,15 @@ h3 {
   color: var(--clr-text);
 }
 
+a {
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
 .App {
   min-height: 100vh;
   width: 100%;
@@ -45,9 +54,4 @@ h3 {
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-h1 {
-  font-size: 3rem;
-  margin-bottom: 1.5rem;
 }
