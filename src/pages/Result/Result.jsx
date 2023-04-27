@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { DateTime } from "luxon";
-import { useLoaderData, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import Slider from "../../components/Slider/Slider";
 import Card from "../../components/Card/Card";
 
 import "./Result.css";
+import Button from "../../components/Button/Button";
 
 const Result = () => {
+  const [isFetching, setIsFetching] = useState(true);
   const [subsData, setSubsData] = useState([]);
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
   const [numberValue, setNumberValue] = useState(6);
@@ -15,27 +17,25 @@ const Result = () => {
   const [isAscending, setIsAscending] = useState(true);
 
   const { state } = useLocation();
-  // const { token } = state;
+  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const getSubsData = async () => {
-  //     let myHeaders = new Headers();
-  //     myHeaders.append("Content-Type", "application/json");
-
-  //     const serverResponse = await fetch("http://localhost:3000/", {
-  //       method: "POST",
-  //       headers: myHeaders,
-  //       body: JSON.stringify(),
-  //     });
-  //     const jsonListOfSubs = await serverResponse.json();
-  //     return jsonListOfSubs;
-  //   };
-
-  //   getSubsData();
-  // }, [state]);
-
+  //sending access_token, username, and channel ID to backend
   useEffect(() => {
-    console.log(state);
+    const getSubsData = async () => {
+      let myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+
+      const serverResponse = await fetch("http://localhost:3000/", {
+        method: "POST",
+        headers: myHeaders,
+        body: JSON.stringify(state),
+      });
+      const jsonListOfSubs = await serverResponse.json();
+      setIsFetching(false);
+      setSubsData(jsonListOfSubs);
+    };
+
+    if (state) getSubsData();
   }, [state]);
 
   // filter data based on dropdown value and number value
@@ -84,7 +84,7 @@ const Result = () => {
     const debounceDelay = setTimeout(updateData, 1000);
 
     return () => clearTimeout(debounceDelay);
-  }, [numberValue, dropdownValue]);
+  }, [subsData, numberValue, dropdownValue]);
 
   // dropdown options
   const dateOptions = ["month(s)", "year(s)"];
@@ -123,59 +123,84 @@ const Result = () => {
     setDropdownValue(dropdownValue);
   };
 
-  return <div className="result-page"></div>;
+  //show loader while waiting for backend response
+  const renderContent = () => {
+    if (!state)
+      return (
+        <div className="manual-steps">
+          <p>You didn't log in your Google Account or provided Youtube handle/channel ID!</p>
+          <Button
+            text="Return to Start"
+            onClick={() => navigate("/")}
+          />
+        </div>
+      );
+    else if (isFetching)
+      return (
+        <div className="manual-steps">
+          <p>Loading data, please wait...</p>
+          <div className="lds-dual-ring"></div>
+        </div>
+      );
+    else return renderGrid();
+  };
 
-  // return (
-  //   <div className="result-page">
-  //     <div className="controls">
-  //       <Slider
-  //         handleSetNumberValue={handleSetNumberValue}
-  //         currentStep={sliderSteps.indexOf(numberValue.toString() + " " + dropdownValue)}
-  //       />
-  //       <input
-  //         min={0}
-  //         type="number"
-  //         value={numberValue}
-  //         onChange={e => setNumberValue(e.target.value)}
-  //       />
-  //       <select
-  //         onChange={e => setDropdownValue(e.target.value)}
-  //         value={dropdownValue}
-  //       >
-  //         {dateOptions.map((option, i) => (
-  //           <option
-  //             key={i}
-  //             value={option}
-  //           >
-  //             {option}
-  //           </option>
-  //         ))}
-  //       </select>
-  //       <label>
-  //         <input
-  //           type="checkbox"
-  //           checked={isAscending}
-  //           onChange={() => setIsAscending(prevValue => !prevValue)}
-  //         />
-  //         Reverse sorting
-  //       </label>
-  //     </div>
-  //     <div className="cards-grid">
-  //       {(isAscending ? [...filteredAndSortedData].reverse() : filteredAndSortedData).map((element, i) => (
-  //         <Card
-  //           key={i}
-  //           channelId={element.channelId}
-  //           thumbnail={element.thumbnail}
-  //           title={element.title}
-  //           lastVideoID={element.lastVideoID}
-  //           lastVideoThumbnail={element.lastVideoThumbnail}
-  //           lastVideoTitle={element.lastVideoTitle}
-  //           lastVideoDate={element.lastVideoDate}
-  //         />
-  //       ))}
-  //     </div>
-  //   </div>
-  // );
+  //actual content
+  const renderGrid = () => {
+    return (
+      <div className="result-page">
+        <div className="controls">
+          <Slider
+            handleSetNumberValue={handleSetNumberValue}
+            currentStep={sliderSteps.indexOf(numberValue.toString() + " " + dropdownValue)}
+          />
+          <input
+            min={0}
+            type="number"
+            value={numberValue}
+            onChange={e => setNumberValue(e.target.value)}
+          />
+          <select
+            onChange={e => setDropdownValue(e.target.value)}
+            value={dropdownValue}
+          >
+            {dateOptions.map((option, i) => (
+              <option
+                key={i}
+                value={option}
+              >
+                {option}
+              </option>
+            ))}
+          </select>
+          <label>
+            <input
+              type="checkbox"
+              checked={isAscending}
+              onChange={() => setIsAscending(prevValue => !prevValue)}
+            />
+            Reverse sorting
+          </label>
+        </div>
+        <div className="cards-grid">
+          {(isAscending ? [...filteredAndSortedData].reverse() : filteredAndSortedData).map((element, i) => (
+            <Card
+              key={i}
+              channelId={element.channelId}
+              thumbnail={element.thumbnail}
+              title={element.title}
+              lastVideoID={element.lastVideoID}
+              lastVideoThumbnail={element.lastVideoThumbnail}
+              lastVideoTitle={element.lastVideoTitle}
+              lastVideoDate={element.lastVideoDate}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  return renderContent();
 };
 
 export default Result;
