@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useGoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+
+import Button from "../../components/Buttons/Button";
+import LinkButton from "../../components/Buttons/LinkButton";
+import Loading from "../../components/Loading/Loading";
 
 import "./Start.css";
 
 const Start = () => {
   const [serverStatus, setServerStatus] = useState(null);
+
+  const navigate = useNavigate;
 
   useEffect(() => {
     const checkServer = async () => {
@@ -25,13 +32,9 @@ const Start = () => {
       case 200:
         return renderContent();
       case null:
-        return (
-          <div className="manual-steps">
-            <p>Checking for server availability...</p>
-            <div className="lds-dual-ring"></div>
-          </div>
-        );
+        return <Loading text="Checking for server availability..." />;
       default:
+        return renderContent();
         return (
           <div className="manual-steps">
             <p>Sorry, but the server is not responding. Please, try again later!</p>
@@ -40,23 +43,30 @@ const Start = () => {
     }
   };
 
+  const login = useGoogleLogin({
+    onSuccess: async googleResponse =>
+      navigate("/result", {
+        state: {
+          type: "auth",
+          token: googleResponse.access_token,
+        },
+      }),
+    scope: "https://www.googleapis.com/auth/youtube.readonly",
+  });
+
   const renderContent = () => {
     return (
       <div className="start-container">
-        <Link
-          to="/auth"
-          className="auth-choice"
-        >
-          <h2>I'm okay with logging in my Google account</h2>
-          {/* <p>or I don't know my Youtube username/channel ID</p> */}
-        </Link>
-        <Link
+        <p>See which Youtube channels didn't post their videos in quite some time 💀</p>
+        <Button
+          text="Continue with Google Account"
+          main
+          onClick={() => login()}
+        />
+        <LinkButton
           to="/manual"
-          className="username-choice"
-        >
-          <h2>I don't want to log in my Google account</h2>
-          {/* <p>and I know my Youtube username/channel ID</p> */}
-        </Link>
+          text="I don't want to login into my Google account"
+        />
       </div>
     );
   };

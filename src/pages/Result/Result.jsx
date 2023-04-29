@@ -6,7 +6,9 @@ import Slider from "../../components/Slider/Slider";
 import Card from "../../components/Card/Card";
 
 import "./Result.css";
-import Button from "../../components/Button/Button";
+import Button from "../../components/Buttons/Button";
+
+import { response } from "../../response.js";
 
 const Result = () => {
   const [isFetching, setIsFetching] = useState(true);
@@ -33,9 +35,14 @@ const Result = () => {
       const jsonListOfSubs = await serverResponse.json();
       setIsFetching(false);
       setSubsData(jsonListOfSubs);
+      console.log(jsonListOfSubs);
     };
 
-    if (state) getSubsData();
+    // if (state) getSubsData();
+    if (state) {
+      setIsFetching(false);
+      setSubsData(response);
+    }
   }, [state]);
 
   // filter data based on dropdown value and number value
@@ -201,6 +208,7 @@ const Result = () => {
   };
 
   return renderContent();
+  // return <div></div>;
 };
 
 export default Result;

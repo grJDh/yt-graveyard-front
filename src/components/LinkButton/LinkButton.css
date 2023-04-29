@@ -1,0 +1,43 @@
+:root {
+  --button-color: #d9d9d9;
+
+  --button-color-hover: #ffffff26;
+  --button-color-hover-main: white;
+
+  --button-color-active: #8c8c8c26;
+  --button-color-active-main: #bfbfbf;
+
+  --button-text-color: #f4f4f4;
+}
+
+.link-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--button-color);
+  border-radius: 0.1rem;
+  height: 4rem;
+  font-size: 1.5rem;
+  padding: 1.2rem;
+  color: var(--button-text-color);
+  text-align: center;
+}
+
+.main-link {
+  background-color: var(--button-color);
+  color: black;
+}
+
+.link-button:hover {
+  background-color: var(--button-color-hover);
+}
+.main-link:hover {
+  background-color: var(--button-color-hover-main);
+}
+
+.link-button:active {
+  background-color: var(--button-color-active);
+}
+.main-link:active {
+  background-color: var(--button-color-active-main);
+}

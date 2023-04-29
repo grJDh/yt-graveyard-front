@@ -1,15 +1,14 @@
 import { Outlet, Link } from "react-router-dom";
 
 import "./App.css";
-const App = () => {
 
-  //username cannot be empty or 
+import Title from "./components/Title/Title";
+const App = () => {
+  //username cannot be empty or
 
   return (
     <div className="App">
-      <Link to="/">
-        <h1>Youtube Graveyard ⚰️</h1>
-      </Link>
+      <Title />
 
       <Outlet />
     </div>

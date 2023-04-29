@@ -1,8 +1,7 @@
-.auth-container {
+.title {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  flex: 1 1 auto;
-  width: 100%;
+  gap: 1rem;
 }

@@ -5,7 +5,6 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import App from "./App";
 import Start from "./pages/Start/Start";
-import GoogleAuth from "./pages/GoogleAuth/GoogleAuth";
 import Manual from "./pages/Manual/Manual";
 import Result from "./pages/Result/Result";
 import Error from "./pages/Error/Error";
@@ -20,13 +19,9 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Start />,
-      },
-      {
-        path: "auth",
         element: (
           <GoogleOAuthProvider clientId="227087509653-vebn36qaass89cpfm6q76n2ri0vevvtk.apps.googleusercontent.com">
-            <GoogleAuth />
+            <Start />
           </GoogleOAuthProvider>
         ),
       },

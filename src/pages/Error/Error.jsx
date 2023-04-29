@@ -1,18 +1,23 @@
 import { useRouteError } from "react-router-dom";
 
+import Title from "../../components/Title/Title";
+
 import "./Error.css";
+
+import coffin_error from "../../assets/coffin_error.svg";
 
 const Error = () => {
   const error = useRouteError();
   console.error(error);
 
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
+    <div className="error-container">
+      <Title />
+      <div className="error-text">
+        <p>Oops! Something went wrong.</p>
+        <p className="error">Error: {error.statusText || error.message}</p>
+        <img src={coffin_error} />
+      </div>
     </div>
   );
 };
