@@ -1,0 +1,58 @@
+.spoiler-container {
+  width: 100%;
+}
+
+.spoiler-label {
+  cursor: pointer;
+}
+
+.spoiler-label:hover div,
+.spoiler-label:hover p {
+  color: var(--clr-highlight);
+  border-color: var(--clr-highlight);
+}
+
+.spoiler-label:has(input[type="checkbox"]:checked) div {
+  color: var(--clr-highlight);
+  border-color: var(--clr-highlight);
+}
+
+.spoiler-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spoiler-qm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 1px;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  color: white;
+  font-weight: 600;
+}
+
+.spoiler-container input[type="checkbox"] {
+  display: none;
+}
+
+.spoiler-content {
+  display: none;
+  gap: 0.5rem;
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-left: 1.5rem;
+}
+
+.spoiler-content p {
+  font-size: 1rem;
+  text-align: left;
+}
+
+.spoiler-container label:has(input[type="checkbox"]:checked) ~ .spoiler-content {
+  display: flex;
+}

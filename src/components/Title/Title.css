@@ -3,5 +3,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 0.4rem;
+}
+
+.title a {
+  max-width: 30%;
+}
+
+h1 {
+  font-family: "Nanum Myeongjo", serif;
+  font-size: 3rem;
+  /* margin-bottom: 1.5rem; */
+  text-align: center;
 }

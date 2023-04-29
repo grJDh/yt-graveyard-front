@@ -57,7 +57,7 @@ const Start = () => {
   const renderContent = () => {
     return (
       <div className="start-container">
-        <p>See which Youtube channels didn't post their videos in quite some time 💀</p>
+        <p>See which Youtube channels you are subscribed to are probably dead 💀</p>
         <Button
           text="Continue with Google Account"
           main

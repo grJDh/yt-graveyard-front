@@ -8,13 +8,12 @@ const Title = () => {
   //username cannot be empty or
 
   return (
-    <Link
-      to="/"
-      className="title"
-    >
-      <img src={grave_main} />
+    <div className="title">
+      <Link to="/">
+        <img src={grave_main} />
+      </Link>
       <h1>YouTube Graveyard</h1>
-    </Link>
+    </div>
   );
 };
 
