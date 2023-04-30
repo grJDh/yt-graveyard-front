@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGoogleLogin } from "@react-oauth/google";
-import { DateTime } from "luxon";
 
 import Button from "../../components/Buttons/Button";
 import LinkButton from "../../components/Buttons/LinkButton";
@@ -12,12 +11,12 @@ import "./Start.css";
 const Start = () => {
   const [serverStatus, setServerStatus] = useState(null);
 
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const checkServer = async () => {
       try {
-        const response = await fetch("http://localhost:3000/");
+        const response = await fetch("https://yt-graveyard-server-grjdh.vercel.app/");
         setServerStatus(response.status);
       } catch (error) {
         console.log(error);
