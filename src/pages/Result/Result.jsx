@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 import Card from "../../components/Card/Card";
 import Button from "../../components/Buttons/Button";
+import Loading from "../../components/Loading/Loading";
 
 import "./Result.css";
 
@@ -87,25 +88,20 @@ const Result = () => {
   // dropdown options
   const dateOptions = ["month(s)", "year(s)"];
 
-  //show loader while waiting for backend response
+  //show loader while waiting for backend response or show an error if they didn't log in
   const renderContent = () => {
     if (!state)
       return (
         <div className="manual-steps">
-          <p>You didn't log in your Google Account or provided Youtube handle/channel ID!</p>
+          <p>You didn't log in your Google Account or provided Youtube channel ID!</p>
           <Button
+            main
             text="Return to Start"
             onClick={() => navigate("/")}
           />
         </div>
       );
-    else if (isFetching)
-      return (
-        <div className="manual-steps">
-          <p>Loading data, please wait...</p>
-          <div className="lds-dual-ring"></div>
-        </div>
-      );
+    else if (isFetching) return <Loading text="Loading your subscriptions..." />;
     else return renderGrid();
   };
 
