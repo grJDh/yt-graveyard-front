@@ -11,31 +11,36 @@ import Error from "./pages/Error/Error";
 
 import "./index.css";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      errorElement: <Error />,
+      children: [
+        {
+          path: "",
+          element: (
+            <GoogleOAuthProvider clientId="227087509653-vebn36qaass89cpfm6q76n2ri0vevvtk.apps.googleusercontent.com">
+              <Start />
+            </GoogleOAuthProvider>
+          ),
+        },
+        {
+          path: "manual",
+          element: <Manual />,
+        },
+        {
+          path: "result",
+          element: <Result />,
+        },
+      ],
+    },
+  ],
   {
-    path: "/",
-    element: <App />,
-    errorElement: <Error />,
-    children: [
-      {
-        path: "",
-        element: (
-          <GoogleOAuthProvider clientId="227087509653-vebn36qaass89cpfm6q76n2ri0vevvtk.apps.googleusercontent.com">
-            <Start />
-          </GoogleOAuthProvider>
-        ),
-      },
-      {
-        path: "manual",
-        element: <Manual />,
-      },
-      {
-        path: "result",
-        element: <Result />,
-      },
-    ],
-  },
-]);
+    basename: "/yt-graveyard-front",
+  }
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
