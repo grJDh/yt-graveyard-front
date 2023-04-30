@@ -14,7 +14,6 @@
   --text-video-title: 1rem;
 
   /* ----------misc---------- */
-  /* border-radius */
   --brd-rad: 3px;
 
   --button-color: #d9d9d9;
@@ -31,6 +30,8 @@
 
   --clr-highlight: #e3ff39;
   --clr-highlight-active: #ffd139;
+
+  --center-offest: -90px;
 }
 
 html,

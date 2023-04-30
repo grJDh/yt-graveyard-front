@@ -34,8 +34,7 @@ const Manual = () => {
       <p>After that, enter your channel ID here:</p>
       <div className="manual-input">
         <Input
-          placeholder="@YourHandle/YourChannelID"
-          text="Your handle or channel ID here"
+          placeholder="YourChannelID"
           onChange={handleSetToken}
         />
         <Button
@@ -65,8 +64,14 @@ const Manual = () => {
           channel ID.{" "}
         </p>
         <p>
-          <span className="highlight">If you don't have a channel</span>, then you can either create one or
-          <Link to="/"> login into your Google Account</Link> instead
+          <span className="highlight">If you don't have a channel</span>, then you can either create one or{" "}
+          <Link
+            className="highlight"
+            to="/"
+          >
+            login into your Google Account
+          </Link>{" "}
+          instead
         </p>
         <img
           src={channel_id}
