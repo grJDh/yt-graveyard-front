@@ -34,7 +34,7 @@ const Start = () => {
       case null:
         return <Loading text="Checking for server availability..." />;
       default:
-        return renderContent();
+        // return renderContent();
         return (
           <div className="manual-steps">
             <p>Sorry, but the server is not responding. Please, try again later!</p>

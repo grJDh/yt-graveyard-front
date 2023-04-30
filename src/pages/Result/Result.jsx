@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import { DateTime } from "luxon";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import Slider from "../../components/Slider/Slider";
 import Card from "../../components/Card/Card";
-
-import "./Result.css";
 import Button from "../../components/Buttons/Button";
 
-import { response } from "../../response.js";
+import "./Result.css";
 
 const Result = () => {
   const [isFetching, setIsFetching] = useState(true);
@@ -34,15 +31,11 @@ const Result = () => {
       });
       const jsonListOfSubs = await serverResponse.json();
       setIsFetching(false);
-      setSubsData(jsonListOfSubs);
-      console.log(jsonListOfSubs);
+      setSubsData(jsonListOfSubs.serverResponse);
+      // console.log(jsonListOfSubs.serverResponse);
     };
 
-    // if (state) getSubsData();
-    if (state) {
-      setIsFetching(false);
-      setSubsData(response);
-    }
+    if (state) getSubsData();
   }, [state]);
 
   // filter data based on dropdown value and number value
@@ -88,47 +81,11 @@ const Result = () => {
       setFilteredAndSortedData(sortedData);
     };
 
-    const debounceDelay = setTimeout(updateData, 1000);
-
-    return () => clearTimeout(debounceDelay);
+    updateData();
   }, [subsData, numberValue, dropdownValue]);
 
   // dropdown options
   const dateOptions = ["month(s)", "year(s)"];
-
-  //slider steps
-  const sliderSteps = [
-    "1 month(s)",
-    "2 month(s)",
-    "3 month(s)",
-    "4 month(s)",
-    "5 month(s)",
-    "6 month(s)",
-    "7 month(s)",
-    "8 month(s)",
-    "9 month(s)",
-    "10 month(s)",
-    "11 month(s)",
-    "1 year(s)",
-    "2 year(s)",
-    "3 year(s)",
-    "4 year(s)",
-    "5 year(s)",
-  ];
-
-  // set number value and dropdown value based on slider value
-  const handleSetNumberValue = value => {
-    const sliderValue = sliderSteps[value];
-    const numInputValue = parseInt(sliderValue.substring(0, sliderValue.indexOf(" ")));
-
-    let dropdownValue = "month(s)";
-    if (sliderValue.includes("year(s)")) dropdownValue = "year(s)";
-    else if (sliderValue.includes("week(s)")) dropdownValue = "week(s)";
-    else dropdownValue = "month(s)";
-
-    setNumberValue(numInputValue);
-    setDropdownValue(dropdownValue);
-  };
 
   //show loader while waiting for backend response
   const renderContent = () => {
@@ -157,10 +114,6 @@ const Result = () => {
     return (
       <div className="result-page">
         <div className="controls">
-          <Slider
-            handleSetNumberValue={handleSetNumberValue}
-            currentStep={sliderSteps.indexOf(numberValue.toString() + " " + dropdownValue)}
-          />
           <input
             min={0}
             type="number"
