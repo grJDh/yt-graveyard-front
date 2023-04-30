@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { DateTime } from "luxon";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import Card from "../../components/Card/Card";
-import Button from "../../components/Buttons/Button";
 import Loading from "../../components/Loading/Loading";
 
 import "./Result.css";
+import ErrorResponse from "../../components/ErrorResponse/ErrorResponse";
 
 const Result = () => {
   const [isFetching, setIsFetching] = useState(true);
+  const [error, setError] = useState(null);
   const [subsData, setSubsData] = useState([]);
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
   const [numberValue, setNumberValue] = useState(6);
@@ -17,9 +18,8 @@ const Result = () => {
   const [isAscending, setIsAscending] = useState(true);
 
   const { state } = useLocation();
-  const navigate = useNavigate();
 
-  //sending access_token, username, and channel ID to backend
+  //sending access_token or channel ID to backend
   useEffect(() => {
     const getSubsData = async () => {
       let myHeaders = new Headers();
@@ -30,10 +30,19 @@ const Result = () => {
         headers: myHeaders,
         body: JSON.stringify(state),
       });
-      const jsonListOfSubs = await serverResponse.json();
-      setIsFetching(false);
-      setSubsData(jsonListOfSubs.serverResponse);
-      // console.log(jsonListOfSubs.serverResponse);
+
+      if (serverResponse.ok) {
+        const jsonListOfSubs = await serverResponse.json();
+        // setSubsData(jsonListOfSubs);
+        setSubsData(jsonListOfSubs.serverResponse);
+        setIsFetching(false);
+        console.log(jsonListOfSubs);
+      } else {
+        const error = await serverResponse.json();
+        setError(error.error);
+        setIsFetching(false);
+        console.log(error.error);
+      }
     };
 
     if (state) getSubsData();
@@ -91,17 +100,9 @@ const Result = () => {
   //show loader while waiting for backend response or show an error if they didn't log in
   const renderContent = () => {
     if (!state)
-      return (
-        <div className="manual-steps">
-          <p>You didn't log in your Google Account or provided Youtube channel ID!</p>
-          <Button
-            main
-            text="Return to Start"
-            onClick={() => navigate("/")}
-          />
-        </div>
-      );
+      return <ErrorResponse text="You didn't login into your Google Account or provided Youtube channel ID!" />;
     else if (isFetching) return <Loading text="Loading your subscriptions..." />;
+    else if (error) return renderError();
     else return renderGrid();
   };
 
@@ -154,6 +155,29 @@ const Result = () => {
         </div>
       </div>
     );
+  };
+
+  const renderError = () => {
+    switch (error) {
+      case "subscriberNotFound":
+        return <ErrorResponse text="Channel with this channel ID does not exist." />;
+      case "subscriptionForbidden":
+        return <ErrorResponse text="You forgot to make your subscriptions public." />;
+      case "quotaExceeded":
+        const whenQuotaResetsInPST = DateTime.fromObject({ hour: 0, minute: 0, second: 0 }, { zone: "pst" });
+        const whenQuotaResetsInLocal = whenQuotaResetsInPST.toLocal().toLocaleString(DateTime.TIME_SIMPLE);
+        return (
+          <ErrorResponse
+            text={
+              "Sorry, but it looks like we exceeded our API quota. Please, try again after " +
+              whenQuotaResetsInLocal +
+              " in your local time."
+            }
+          />
+        );
+      default:
+        return <ErrorResponse text="Something went wrong. Please try again later." />;
+    }
   };
 
   return renderContent();

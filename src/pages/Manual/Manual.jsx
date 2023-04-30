@@ -5,7 +5,7 @@ import "./Manual.css";
 import yt_privacy from "../../assets/guide/yt_privacy.png";
 import channel_id from "../../assets/guide/channel_id.png";
 
-import Button from "../../components/Buttons/Button";
+import LinkButton from "../../components/Buttons/LinkButton";
 import Input from "../../components/Input/Input";
 import { useState } from "react";
 import Spoiler from "../../components/Spoiler/Spoiler";
@@ -37,17 +37,14 @@ const Manual = () => {
           placeholder="YourChannelID"
           onChange={handleSetToken}
         />
-        <Button
+        <LinkButton
           text="Continue"
           main
-          onClick={() =>
-            navigate("/result", {
-              state: {
-                type: "manual",
-                token: token,
-              },
-            })
-          }
+          to="/result"
+          state={{
+            type: "manual",
+            token: token,
+          }}
         />
       </div>
 

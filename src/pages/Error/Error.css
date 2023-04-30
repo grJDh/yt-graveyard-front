@@ -13,19 +13,19 @@
   justify-content: center;
   gap: 1rem;
 
+  text-align: center;
+
   margin-bottom: 2rem;
 
   height: 100%;
+
+  transform: translateY(var(--center-offest));
 }
 
 .error-text p {
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .error-text .error {
   color: red;
-}
-
-.error-text img:last-child {
-  width: 20rem;
 }

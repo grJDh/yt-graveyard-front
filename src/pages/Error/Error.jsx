@@ -1,22 +1,29 @@
-import { useRouteError } from "react-router-dom";
+import { useRouteError, useNavigate } from "react-router-dom";
 
 import Title from "../../components/Title/Title";
 
 import "./Error.css";
-
-import coffin_error from "../../assets/coffin_error.svg";
+import LinkButton from "../../components/Buttons/LinkButton";
 
 const Error = () => {
   const error = useRouteError();
-  console.error(error);
+  const navigate = useNavigate();
 
   return (
     <div className="error-container">
-      <Title />
+      <Title
+        text="Oops! Something went wrong"
+        coffin
+      />
       <div className="error-text">
-        <p>Oops! Something went wrong.</p>
+        {/* <p>Something went wrong.</p> */}
         <p className="error">Error: {error.statusText || error.message}</p>
-        <img src={coffin_error} />
+        <LinkButton
+          main
+          reload
+          text="Return to Start"
+          to="/"
+        />
       </div>
     </div>
   );

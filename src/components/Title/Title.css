@@ -4,10 +4,11 @@
   justify-content: center;
   align-items: center;
   gap: 0.4rem;
+  margin-top: 1rem;
 }
 
 .title a {
-  max-width: 30%;
+  max-width: 7.5rem;
 }
 
 h1 {
