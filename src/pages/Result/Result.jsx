@@ -35,8 +35,13 @@ const Result = () => {
 
       if (serverResponse.ok) {
         const jsonListOfSubs = await serverResponse.json();
-        setSubsData(jsonListOfSubs);
-        // setSubsData(jsonListOfSubs.serverResponse);
+
+        //TODO: fix it later
+        if (jsonListOfSubs.serverResponse !== undefined) {
+          setSubsData(jsonListOfSubs.serverResponse);
+        } else {
+          setSubsData(jsonListOfSubs);
+        }
         setIsFetching(false);
         // console.log(jsonListOfSubs);
       } else {
