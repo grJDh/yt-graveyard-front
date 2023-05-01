@@ -31,7 +31,7 @@ const Manual = () => {
   return (
     <div className="manual-steps">
       <p>
-        If you don't want to login into your Google Account, then in order for the site to see your subscriptions, you
+        If you don't want to log in to your Google Account, then in order for the site to see your subscriptions you
         need to <span className="highlight">make them public</span>. You can do this by following{" "}
         <a
           href="https://www.youtube.com/account_privacy"
@@ -39,8 +39,8 @@ const Manual = () => {
         >
           this link
         </a>{" "}
-        and turning off the <span className="highlight">"Keep all my subscriptions private"</span> setting. Don't worry
-        - you can turn it back on later!
+        and turning off the <span className="highlight">"Keep all my subscriptions private"</span> option. Don't worry -
+        you can turn it back on later!
       </p>
       {/* <p>After that, enter your channel ID here:</p> */}
 

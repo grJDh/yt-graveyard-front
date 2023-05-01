@@ -72,7 +72,6 @@
 }
 
 .video-date {
-  text-align: right;
   position: absolute;
   bottom: 0px;
   right: 0px;
@@ -80,4 +79,9 @@
   background-color: var(--clr-black-alpha);
   padding: 0.2rem 0.2rem;
   border-radius: var(--brd-rad);
+}
+
+.thumbnail .video-date {
+  text-align: right;
+  font-size: 1rem;
 }

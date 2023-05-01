@@ -9,7 +9,7 @@ const NumberInput = ({ text, min, value, onChange }) => {
         min={min}
         value={value}
         onChange={onChange}
-        inputmode="decimal"
+        inputMode="decimal"
       />
     </label>
   );

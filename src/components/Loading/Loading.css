@@ -7,7 +7,7 @@
 
   height: 100%;
 
-  /* transform: translateY(var(--center-offest)); */
+  transform: translateY(var(--center-offest));
 }
 
 .loading-container p {

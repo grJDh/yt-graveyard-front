@@ -16,6 +16,6 @@
   background-color: var(--clr-background);
 }
 
-.number-input-label p {
+.dropdown-label p {
   font-size: 0;
 }

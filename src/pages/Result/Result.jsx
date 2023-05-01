@@ -105,7 +105,7 @@ const Result = () => {
   const renderContent = () => {
     if (!state)
       return <ErrorResponse text="You didn't login into your Google Account or provided Youtube channel ID!" />;
-    else if (isFetching) return <Loading text="Loading your subscriptions..." />;
+    else if (isFetching) return <Loading text="Walking to graveyard..." />;
     else if (error) return renderError();
     else return renderGrid();
   };
@@ -114,48 +114,47 @@ const Result = () => {
   const renderGrid = () => {
     return (
       <div className="result-page">
+        <p>Here are YouTube channels that haven't released a video in at least...</p>
         <div className="controls">
           <NumberInput
-            text="Number of months/years"
-            min={0}
+            text="Filter by number of..."
+            min={1}
             value={numberValue}
             onChange={e => setNumberValue(e.target.value)}
           />
           <Dropdown
+            text="...months or years"
             onChange={e => setDropdownValue(e.target.value)}
             value={dropdownValue}
             options={dateOptions}
           ></Dropdown>
           <Dropdown
+            text="Sort by..."
             onChange={e => setIsAscending(e.target.value)}
             value={isAscending}
             options={sortOptions}
           ></Dropdown>
-          {/* <label>
-            <input
-              type="checkbox"
-              checked={isAscending}
-              onChange={() => setIsAscending(prevValue => !prevValue)}
-            />
-            Reverse sorting
-          </label> */}
         </div>
-        <div className="cards-grid">
-          {(isAscending === "from new to old" ? [...filteredAndSortedData].reverse() : filteredAndSortedData).map(
-            (element, i) => (
-              <Card
-                key={i}
-                channelId={element.channelId}
-                thumbnail={element.thumbnail}
-                title={element.title}
-                lastVideoID={element.lastVideoID}
-                lastVideoThumbnail={element.lastVideoThumbnail}
-                lastVideoTitle={element.lastVideoTitle}
-                lastVideoDate={element.lastVideoDate}
-              />
-            )
-          )}
-        </div>
+        {filteredAndSortedData.length === 0 ? (
+          <p className="no-results highlight">No results found!</p>
+        ) : (
+          <div className="cards-grid">
+            {(isAscending === "from new to old" ? [...filteredAndSortedData].reverse() : filteredAndSortedData).map(
+              (element, i) => (
+                <Card
+                  key={i}
+                  channelId={element.channelId}
+                  thumbnail={element.thumbnail}
+                  title={element.title}
+                  lastVideoID={element.lastVideoID}
+                  lastVideoThumbnail={element.lastVideoThumbnail}
+                  lastVideoTitle={element.lastVideoTitle}
+                  lastVideoDate={element.lastVideoDate}
+                />
+              )
+            )}
+          </div>
+        )}
       </div>
     );
   };

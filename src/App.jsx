@@ -11,7 +11,7 @@ const App = () => {
     <div className="App">
       <Title />
 
-      {/* <Loading text="Loading LoadingLoadingLoading LoadingLoadingLoadingLoading Loading Loading LoadingLoading" /> */}
+      {/* <Loading text="Walking to graveyard..." /> */}
 
       <Outlet />
     </div>
