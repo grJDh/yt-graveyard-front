@@ -1,19 +1,32 @@
-import { Link } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-import "./Manual.css";
+// import LinkButton from "../../components/Buttons/LinkButton";
+import Input from "../../components/Input/Input";
+import Spoiler from "../../components/Spoiler/Spoiler";
+import Button from "../../components/Buttons/Button";
 
 import yt_privacy from "../../assets/guide/yt_privacy.png";
 import channel_id from "../../assets/guide/channel_id.png";
 
-import LinkButton from "../../components/Buttons/LinkButton";
-import Input from "../../components/Input/Input";
-import { useState } from "react";
-import Spoiler from "../../components/Spoiler/Spoiler";
+import "./Manual.css";
 
 const Manual = () => {
-  const [token, setToken] = useState("");
+  const [channelID, setChannelID] = useState("");
 
-  const handleSetToken = event => setToken(event.target.value);
+  const navigate = useNavigate();
+
+  const handleSetToken = event => setChannelID(event.target.value);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    navigate("/result", {
+      state: {
+        type: "manual",
+        token: channelID,
+      },
+    });
+  };
 
   return (
     <div className="manual-steps">
@@ -29,22 +42,27 @@ const Manual = () => {
         and turning off the <span className="highlight">"Keep all my subscriptions private"</span> setting. Don't worry
         - you can turn it back on later!
       </p>
-      <p>After that, enter your channel ID here:</p>
-      <div className="manual-input">
+      {/* <p>After that, enter your channel ID here:</p> */}
+
+      <form
+        className="manual-input"
+        onSubmit={handleSubmit}
+      >
         <Input
-          placeholder="YourChannelID"
+          placeholder="UCYourChannelID"
           onChange={handleSetToken}
+          required
+          value={channelID}
+          pattern="(UC).*"
+          help='Must start with "UC"'
+          text="After that, enter your channel ID here:"
         />
-        <LinkButton
+        <Button
           text="Continue"
           main
-          to="/result"
-          state={{
-            type: "manual",
-            token: token,
-          }}
+          submit
         />
-      </div>
+      </form>
 
       <Spoiler title="Where can I find my channel ID?">
         <p>

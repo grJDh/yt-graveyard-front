@@ -1,12 +1,20 @@
 import "./Input.css";
 
-const Input = ({ text, placeholder, onChange }) => {
+const Input = ({ text, placeholder, onChange, required = false, value, pattern, help }) => {
   return (
-    <input
-      type="text"
-      placeholder={placeholder}
-      onChange={onChange}
-    />
+    <label>
+      <p>{text}</p>
+      <input
+        type="text"
+        placeholder={placeholder}
+        onChange={onChange}
+        required={required}
+        value={value}
+        name="channelID"
+        pattern={pattern}
+        title={help}
+      />
+    </label>
   );
 };
 
