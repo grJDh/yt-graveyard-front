@@ -5,7 +5,13 @@
   flex-direction: column;
   width: 100%;
   gap: 1rem;
-  padding: 1rem;
+  /* padding: 1rem; */
+}
+
+@media (min-width: 500px) {
+  .result-page {
+    padding: 1rem;
+  }
 }
 
 .result-page p {
@@ -17,7 +23,8 @@
   width: 100%;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  justify-items: center;
 }
 
 .controls {
