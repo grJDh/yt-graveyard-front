@@ -38,7 +38,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/yt-graveyard-front",
+    basename: "/yt-graveyard-front/",
   }
 );
 
