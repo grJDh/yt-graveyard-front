@@ -16,6 +16,8 @@ const Card = ({ channelId, thumbnail, title, lastVideoID, lastVideoThumbnail, la
       <a
         href={"https://www.youtube.com/channel/" + channelId}
         className="a-warper"
+        target="_blank"
+        rel="noreferrer"
       >
         <div className="channel-warper">
           <img src={thumbnail} />
@@ -26,6 +28,8 @@ const Card = ({ channelId, thumbnail, title, lastVideoID, lastVideoThumbnail, la
       <a
         href={"https://youtube.com/watch?v=" + lastVideoID}
         className="a-warper"
+        target="_blank"
+        rel="noreferrer"
       >
         <div className="video-warper">
           <div className="thumbnail">

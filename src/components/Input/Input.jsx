@@ -2,7 +2,7 @@ import "./Input.css";
 
 const Input = ({ text, placeholder, onChange, required = false, value, pattern, help }) => {
   return (
-    <label>
+    <label className="text-input-label">
       <p>{text}</p>
       <input
         type="text"

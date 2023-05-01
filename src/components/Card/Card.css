@@ -2,7 +2,7 @@
   border-radius: var(--brd-rad);
   background-color: var(--clr-main);
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  /* max-width: 350px; */
+  max-width: 350px;
 
   display: flex;
   /* justify-content: center; */

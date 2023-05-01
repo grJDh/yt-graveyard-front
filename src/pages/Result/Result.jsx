@@ -7,6 +7,8 @@ import Loading from "../../components/Loading/Loading";
 
 import "./Result.css";
 import ErrorResponse from "../../components/ErrorResponse/ErrorResponse";
+import NumberInput from "../../components/NumberInput/NumberInput";
+import Dropdown from "../../components/Dropdown/Dropdown";
 
 const Result = () => {
   const [isFetching, setIsFetching] = useState(true);
@@ -15,7 +17,7 @@ const Result = () => {
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
   const [numberValue, setNumberValue] = useState(6);
   const [dropdownValue, setDropdownValue] = useState("month(s)");
-  const [isAscending, setIsAscending] = useState(true);
+  const [isAscending, setIsAscending] = useState("from new to old");
 
   const { state } = useLocation();
 
@@ -94,8 +96,10 @@ const Result = () => {
     updateData();
   }, [subsData, numberValue, dropdownValue]);
 
-  // dropdown options
+  // time options
   const dateOptions = ["month(s)", "year(s)"];
+  //sorting options
+  const sortOptions = ["from new to old", "from old to new"];
 
   //show loader while waiting for backend response or show an error if they didn't log in
   const renderContent = () => {
@@ -111,47 +115,46 @@ const Result = () => {
     return (
       <div className="result-page">
         <div className="controls">
-          <input
+          <NumberInput
+            text="Number of months/years"
             min={0}
-            type="number"
             value={numberValue}
             onChange={e => setNumberValue(e.target.value)}
           />
-          <select
+          <Dropdown
             onChange={e => setDropdownValue(e.target.value)}
             value={dropdownValue}
-          >
-            {dateOptions.map((option, i) => (
-              <option
-                key={i}
-                value={option}
-              >
-                {option}
-              </option>
-            ))}
-          </select>
-          <label>
+            options={dateOptions}
+          ></Dropdown>
+          <Dropdown
+            onChange={e => setIsAscending(e.target.value)}
+            value={isAscending}
+            options={sortOptions}
+          ></Dropdown>
+          {/* <label>
             <input
               type="checkbox"
               checked={isAscending}
               onChange={() => setIsAscending(prevValue => !prevValue)}
             />
             Reverse sorting
-          </label>
+          </label> */}
         </div>
         <div className="cards-grid">
-          {(isAscending ? [...filteredAndSortedData].reverse() : filteredAndSortedData).map((element, i) => (
-            <Card
-              key={i}
-              channelId={element.channelId}
-              thumbnail={element.thumbnail}
-              title={element.title}
-              lastVideoID={element.lastVideoID}
-              lastVideoThumbnail={element.lastVideoThumbnail}
-              lastVideoTitle={element.lastVideoTitle}
-              lastVideoDate={element.lastVideoDate}
-            />
-          ))}
+          {(isAscending === "from new to old" ? [...filteredAndSortedData].reverse() : filteredAndSortedData).map(
+            (element, i) => (
+              <Card
+                key={i}
+                channelId={element.channelId}
+                thumbnail={element.thumbnail}
+                title={element.title}
+                lastVideoID={element.lastVideoID}
+                lastVideoThumbnail={element.lastVideoThumbnail}
+                lastVideoTitle={element.lastVideoTitle}
+                lastVideoDate={element.lastVideoDate}
+              />
+            )
+          )}
         </div>
       </div>
     );
