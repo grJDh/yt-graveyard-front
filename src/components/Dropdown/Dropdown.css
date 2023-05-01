@@ -13,7 +13,7 @@
 .dropdown-label select option {
   border: 1px solid var(--button-text-color);
   color: var(--button-text-color);
-  background-color: transparent;
+  background-color: var(--clr-background);
 }
 
 .number-input-label p {

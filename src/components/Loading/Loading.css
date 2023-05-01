@@ -7,11 +7,12 @@
 
   height: 100%;
 
-  transform: translateY(var(--center-offest));
+  /* transform: translateY(var(--center-offest)); */
 }
 
 .loading-container p {
   font-size: 2rem;
+  text-align: center;
 }
 
 .loading-anim {

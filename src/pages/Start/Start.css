@@ -25,6 +25,6 @@
 .start-container p {
   text-align: center;
   font-size: 2rem;
-  max-width: 50%;
+  /* max-width: 50%; */
   margin-bottom: 2rem;
 }

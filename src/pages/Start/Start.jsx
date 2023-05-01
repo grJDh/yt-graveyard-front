@@ -64,7 +64,7 @@ const Start = () => {
         />
         <LinkButton
           to="/manual"
-          text="I don't want to login into my Google account"
+          text="Continue with channel ID"
         />
       </div>
     );
