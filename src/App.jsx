@@ -17,9 +17,9 @@ const App = () => {
     <div className="App">
       <Title />
 
-      <Loading text="Walking to graveyard..." />
+      {/* <Loading text="Walking to graveyard..." /> */}
 
-      {/* <Outlet /> */}
+      <Outlet />
     </div>
   );
 };
