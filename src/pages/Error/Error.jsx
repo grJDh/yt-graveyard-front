@@ -1,4 +1,4 @@
-import { useRouteError, useNavigate } from "react-router-dom";
+import { useRouteError } from "react-router-dom";
 
 import Title from "../../components/Title/Title";
 

@@ -27,7 +27,7 @@ const Result = () => {
       let myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
-      const serverResponse = await fetch("https://yt-graveyard-server-grjdh.vercel.app/", {
+      const serverResponse = await fetch("http://localhost:3000/", {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify(state),
@@ -36,14 +36,12 @@ const Result = () => {
       if (serverResponse.ok) {
         const jsonListOfSubs = await serverResponse.json();
 
-        //TODO: fix it later
-        if (jsonListOfSubs.serverResponse !== undefined) {
-          setSubsData(jsonListOfSubs.serverResponse);
-        } else {
-          setSubsData(jsonListOfSubs);
-        }
-        setIsFetching(false);
+        // if (jsonListOfSubs.serverResponse !== undefined) {
+        //   setSubsData(jsonListOfSubs.serverResponse);
+        // } else
+        setSubsData(jsonListOfSubs);
         // console.log(jsonListOfSubs);
+        setIsFetching(false);
       } else {
         const error = await serverResponse.json();
         setError(error.error);
