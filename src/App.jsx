@@ -12,9 +12,6 @@ const App = () => {
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   });
 
-  console.log(import.meta.env.VITE_SERVER_URL);
-  console.log(import.meta.env.MODE);
-
   return (
     <div className="App">
       <Title />

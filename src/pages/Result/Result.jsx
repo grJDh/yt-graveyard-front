@@ -14,6 +14,7 @@ const Result = () => {
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState(null);
   const [subsData, setSubsData] = useState([]);
+  const [numberoOfMinorFails, setNumberoOfMinorFails] = useState(-1);
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
   const [numberValue, setNumberValue] = useState(6);
   const [dropdownValue, setDropdownValue] = useState("month(s)");
@@ -27,7 +28,7 @@ const Result = () => {
       let myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
-      const serverResponse = await fetch("https://yt-graveyard-server-grjdh.vercel.app", {
+      const serverResponse = await fetch("http://localhost:3000", {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify(state),
@@ -38,14 +39,17 @@ const Result = () => {
 
         if (jsonListOfSubs.serverResponse !== undefined) {
           setSubsData(jsonListOfSubs.serverResponse);
-        } else setSubsData(jsonListOfSubs);
+        } else {
+          setNumberoOfMinorFails(jsonListOfSubs.numberoOfMinorFails);
+          setSubsData(jsonListOfSubs.body);
+        }
         // console.log(jsonListOfSubs);
         setIsFetching(false);
       } else {
         const error = await serverResponse.json();
         setError(error.error);
         setIsFetching(false);
-        console.log(error.error);
+        console.error("Error:", error.error);
       }
     };
 
@@ -157,6 +161,7 @@ const Result = () => {
             )}
           </div>
         )}
+        {numberoOfMinorFails > 0 && <p>And {numberoOfMinorFails} more channels failed to load :(</p>}
       </div>
     );
   };
