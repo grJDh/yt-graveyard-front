@@ -22,13 +22,16 @@ const Result = () => {
 
   const { state } = useLocation();
 
+  //https://yt-graveyard-server-grjdh.vercel.app/
+  //http://localhost:3000
+
   //sending access_token or channel ID to backend
   useEffect(() => {
     const getSubsData = async () => {
       let myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
-      const serverResponse = await fetch("http://localhost:3000", {
+      const serverResponse = await fetch("https://yt-graveyard-server-grjdh.vercel.app/", {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify(state),
