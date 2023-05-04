@@ -14,7 +14,7 @@ const Result = () => {
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState(null);
   const [subsData, setSubsData] = useState([]);
-  const [numberoOfMinorFails, setNumberoOfMinorFails] = useState(-1);
+  const [numberOfMinorFails, setNumberoOfMinorFails] = useState(-1);
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
   const [numberValue, setNumberValue] = useState(6);
   const [dropdownValue, setDropdownValue] = useState("month(s)");
@@ -43,7 +43,8 @@ const Result = () => {
         if (jsonListOfSubs.serverResponse !== undefined) {
           setSubsData(jsonListOfSubs.serverResponse);
         } else {
-          setNumberoOfMinorFails(jsonListOfSubs.numberoOfMinorFails);
+          console.log(jsonListOfSubs);
+          setNumberoOfMinorFails(jsonListOfSubs.numberOfMinorFails);
           setSubsData(jsonListOfSubs.body);
         }
         // console.log(jsonListOfSubs);
@@ -164,7 +165,7 @@ const Result = () => {
             )}
           </div>
         )}
-        {numberoOfMinorFails > 0 && <p>And {numberoOfMinorFails} more channels failed to load :(</p>}
+        {numberOfMinorFails > 0 && <p>...and {numberOfMinorFails} more channels failed to load :(</p>}
       </div>
     );
   };

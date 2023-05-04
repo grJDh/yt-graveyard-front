@@ -27,7 +27,7 @@ const Start = () => {
     checkServer();
   }, []);
 
-  const checkForServerResponse = () => {
+  const checkServerResponse = () => {
     switch (serverStatus) {
       case 200:
         return renderContent();
@@ -36,7 +36,7 @@ const Start = () => {
       default:
         return (
           <div className="manual-steps">
-            <p>Sorry, but the server is not responding. Please, try again later!</p>
+            <p>Sorry, but the server is not responding. Please try again later!</p>
           </div>
         );
     }
@@ -56,7 +56,7 @@ const Start = () => {
   const renderContent = () => {
     return (
       <div className="start-container">
-        <p>See which Youtube channels you are subscribed to are probably dead 💀</p>
+        <p>See which YouTube channels you are subscribed to are probably dead 💀</p>
         <Button
           text="Continue with Google Account"
           main
@@ -64,13 +64,13 @@ const Start = () => {
         />
         <LinkButton
           to="/manual"
-          text="Continue with channel ID"
+          text="Continue with Channel ID"
         />
       </div>
     );
   };
 
-  return checkForServerResponse();
+  return checkServerResponse();
 };
 
 export default Start;

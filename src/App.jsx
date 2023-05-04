@@ -1,10 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { useEffect } from "react";
 
-import "./App.css";
+import { Outlet } from "react-router-dom";
 
 import Title from "./components/Title/Title";
 // import Loading from "./components/Loading/Loading";
-import { useEffect } from "react";
+
+import "./App.css";
 const App = () => {
   //dirty trick
   useEffect(() => {

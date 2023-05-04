@@ -4,10 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 5rem;
-
   height: 100%;
-
-  /* transform: translateY(var(--center-offest)); */
 }
 
 .loading-container p {
@@ -37,13 +34,11 @@
 }
 
 @keyframes jump {
-  0% {
+  0%,
+  50% {
     transform: translateY(0);
   }
   25% {
     transform: translateY(-50px);
-  }
-  50% {
-    transform: translateY(0);
   }
 }
