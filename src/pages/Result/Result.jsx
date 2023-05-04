@@ -165,7 +165,9 @@ const Result = () => {
             )}
           </div>
         )}
-        {failedToLoadChannels.length > 0 && <p>...and here are other channels that failed to load :(</p>}
+        {failedToLoadChannels.length > 0 && (
+          <p>...and here are the channels where we couldn't find the latest video :(</p>
+        )}
         <div className="cards-grid">
           {failedToLoadChannels.sort().map((element, i) => (
             <Card
