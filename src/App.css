@@ -1,35 +1,35 @@
 :root {
   /* ----------colors---------- */
+
   /* main colors */
   --clr-background: #222222;
-  --clr-main: #343438;
-  --clr-focus: #59595a;
+
+  --clr-main-dark: #343438;
+  --clr-main-dark-hover: #434343;
+  --clr-main-dark-hover-light: #57575e;
+  --clr-main-dark-active: #323232;
+
+  --clr-main-light: #d9d9d9;
+  --clr-main-light-hover: white;
+  --clr-main-light-active: #bfbfbf;
+
+  --clr-border: #d9d9d9;
+
   --clr-black-alpha: rgba(0, 0, 0, 0.7);
 
   /* text */
   --clr-text: white;
+  --clr-text-dark: #f4f4f499;
+
+  --clr-highlight: #e3ff39;
+  --clr-highlight-active: #ffd139;
 
   /* ----------fonts---------- */
   --text-channel-title: 1.5rem;
   --text-video-title: 1rem;
 
   /* ----------misc---------- */
-  --brd-rad: 3px;
-
-  --button-color: #d9d9d9;
-
-  --button-color-hover: #ffffff26;
-  --button-color-hover-main: white;
-
-  --button-color-active: #8c8c8c26;
-  --button-color-active-main: #bfbfbf;
-
-  --button-text-color: #f4f4f4;
-
-  --clr-text-dark: #f4f4f499;
-
-  --clr-highlight: #e3ff39;
-  --clr-highlight-active: #ffd139;
+  --border-radius: 3px;
 
   --center-offest: -90px;
 }

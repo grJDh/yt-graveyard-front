@@ -10,19 +10,19 @@
   max-width: 4rem;
 }
 
-h1 {
+.title h1 {
   font-family: "Nanum Myeongjo", serif;
   font-size: 1.9rem;
   text-align: center;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 530px) {
   .title a {
     max-width: 5rem;
   }
 
-  h1 {
-    font-size: 2.5rem;
+  .title h1 {
+    font-size: 3rem;
   }
 }
 

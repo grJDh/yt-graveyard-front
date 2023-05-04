@@ -4,8 +4,8 @@
 
 input[type="text"] {
   background-color: transparent;
-  border-radius: var(--brd-rad);
-  border: 1px solid var(--button-color);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--clr-border);
 
   width: 100%;
   min-width: 300px;
