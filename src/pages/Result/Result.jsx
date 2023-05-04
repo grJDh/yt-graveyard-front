@@ -14,7 +14,7 @@ const Result = () => {
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState(null);
   const [subsData, setSubsData] = useState([]);
-  const [numberOfMinorFails, setNumberoOfMinorFails] = useState(-1);
+  const [failedToLoadChannels, setFailedToLoadChannels] = useState([]);
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
   const [numberValue, setNumberValue] = useState(6);
   const [dropdownValue, setDropdownValue] = useState("month(s)");
@@ -43,8 +43,8 @@ const Result = () => {
         if (jsonListOfSubs.serverResponse !== undefined) {
           setSubsData(jsonListOfSubs.serverResponse);
         } else {
-          console.log(jsonListOfSubs);
-          setNumberoOfMinorFails(jsonListOfSubs.numberOfMinorFails);
+          console.log(jsonListOfSubs.failedToLoadChannels);
+          setFailedToLoadChannels(jsonListOfSubs.failedToLoadChannels);
           setSubsData(jsonListOfSubs.body);
         }
         // console.log(jsonListOfSubs);
@@ -153,9 +153,9 @@ const Result = () => {
               (element, i) => (
                 <Card
                   key={i}
-                  channelId={element.channelId}
-                  thumbnail={element.thumbnail}
-                  title={element.title}
+                  channelID={element.channelID}
+                  channelThumbnail={element.channelThumbnail}
+                  channelTitle={element.channelTitle}
                   lastVideoID={element.lastVideoID}
                   lastVideoThumbnail={element.lastVideoThumbnail}
                   lastVideoTitle={element.lastVideoTitle}
@@ -165,7 +165,18 @@ const Result = () => {
             )}
           </div>
         )}
-        {numberOfMinorFails > 0 && <p>...and {numberOfMinorFails} more channels failed to load :(</p>}
+        {failedToLoadChannels.length > 0 && <p>...and here are other channels that failed to load :(</p>}
+        <div className="cards-grid">
+          {failedToLoadChannels.sort().map((element, i) => (
+            <Card
+              failed
+              key={i}
+              channelID={element.channelID}
+              channelThumbnail={element.channelThumbnail}
+              channelTitle={element.channelTitle}
+            />
+          ))}
+        </div>
       </div>
     );
   };
