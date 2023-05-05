@@ -56,8 +56,9 @@
   gap: 0.5rem;
 }
 
-.video-warper > p {
+.a-warper .video-warper p {
   font-size: var(--text-video-title);
+  text-align: left;
 }
 
 .thumbnail {

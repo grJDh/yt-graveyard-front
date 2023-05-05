@@ -22,7 +22,7 @@ const Result = () => {
 
   const { state } = useLocation();
 
-  //https://yt-graveyard-server-grjdh.vercel.app/
+  //https://yt-graveyard-server-grjdh.vercel.app
   //http://localhost:3000
 
   //sending access_token or channel ID to backend
@@ -31,7 +31,7 @@ const Result = () => {
       let myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
-      const serverResponse = await fetch("https://yt-graveyard-server-grjdh.vercel.app/", {
+      const serverResponse = await fetch("https://yt-graveyard-server-grjdh.vercel.app", {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify(state),
@@ -40,14 +40,11 @@ const Result = () => {
       if (serverResponse.ok) {
         const jsonListOfSubs = await serverResponse.json();
 
-        if (jsonListOfSubs.serverResponse !== undefined) {
-          setSubsData(jsonListOfSubs.serverResponse);
-        } else {
-          console.log(jsonListOfSubs.failedToLoadChannels);
-          setFailedToLoadChannels(jsonListOfSubs.failedToLoadChannels);
-          setSubsData(jsonListOfSubs.body);
-        }
-        // console.log(jsonListOfSubs);
+        setSubsData(jsonListOfSubs.body);
+        setFailedToLoadChannels(jsonListOfSubs.failedToLoadChannels);
+        // console.log(jsonListOfSubs.body);
+        // console.log(jsonListOfSubs.failedToLoadChannels);
+
         setIsFetching(false);
       } else {
         const error = await serverResponse.json();
