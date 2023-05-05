@@ -1,0 +1,23 @@
+.privacy-container {
+  max-width: 60rem;
+}
+
+.privacy-container :is(h1, h2, h3) {
+  margin: 2rem 0;
+}
+
+.privacy-container p {
+  margin: 1rem 0;
+}
+
+.privacy-container h1 {
+  text-align: center;
+}
+
+.privacy-container h2 {
+  font-size: 2.5rem;
+}
+
+.privacy-container h3 {
+  font-size: 2rem;
+}

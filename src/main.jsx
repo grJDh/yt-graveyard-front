@@ -8,6 +8,7 @@ import Start from "./pages/Start/Start";
 import Manual from "./pages/Manual/Manual";
 import Result from "./pages/Result/Result";
 import Error from "./pages/Error/Error";
+import Privacy from "./pages/Privacy/Privacy";
 
 import "./index.css";
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter(
         {
           path: "result",
           element: <Result />,
+        },
+        {
+          path: "privacy",
+          element: <Privacy />,
         },
       ],
     },
