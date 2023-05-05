@@ -32,7 +32,7 @@ const Start = () => {
       case 200:
         return renderContent();
       case null:
-        return <Loading text="Checking for server availability..." />;
+        return <Loading text="Checking server availability..." />;
       default:
         return (
           <div className="manual-steps">

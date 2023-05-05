@@ -111,7 +111,7 @@ const Result = () => {
   //show loader while waiting for backend response or show an error if they didn't log in
   const renderContent = () => {
     if (!state)
-      return <ErrorResponse text="You didn't login into your Google Account or provided Youtube channel ID!" />;
+      return <ErrorResponse text="You didn't log in to your Google Account or provided Youtube channel ID!" />;
     else if (isFetching) return <Loading text="Walking to graveyard..." />;
     else if (error) return renderError();
     else return renderGrid();

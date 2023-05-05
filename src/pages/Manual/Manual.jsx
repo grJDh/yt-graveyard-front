@@ -72,16 +72,16 @@ const Manual = () => {
           >
             this link
           </a>{" "}
-          and look at the adress bar. See a bunch of characters after "channel/" that starts with a "UC"? That's your
+          and look at the adress bar. See a bunch of characters after "channel/" that starts with "UC"? This is your
           channel ID.{" "}
         </p>
         <p>
-          <span className="highlight">If you don't have a channel</span>, then you can either create one or{" "}
+          <span className="highlight">If you don't have a channel</span>, then you can use{" "}
           <Link
             className="highlight"
             to="/"
           >
-            login into your Google Account
+            your Google Account
           </Link>{" "}
           instead
         </p>
