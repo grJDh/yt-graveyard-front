@@ -8,11 +8,11 @@ input[type="text"] {
   border: 1px solid var(--clr-border);
 
   width: 100%;
-  min-width: 300px;
+  min-width: 19rem;
   height: 5rem;
   padding: 1.5rem;
 
-  font-size: 2rem;
+  font-size: 1.8rem;
 
   color: white;
 }

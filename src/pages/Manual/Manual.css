@@ -37,3 +37,8 @@ a.highlight:hover {
 .manual-input button {
   align-self: end;
 }
+
+form {
+  max-width: 30rem;
+  width: 100%;
+}
