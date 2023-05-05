@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import App from "./App";
@@ -11,35 +11,30 @@ import Error from "./pages/Error/Error";
 
 import "./index.css";
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <App />,
-      errorElement: <Error />,
-      children: [
-        {
-          path: "",
-          element: (
-            <GoogleOAuthProvider clientId="227087509653-vebn36qaass89cpfm6q76n2ri0vevvtk.apps.googleusercontent.com">
-              <Start />
-            </GoogleOAuthProvider>
-          ),
-        },
-        {
-          path: "manual",
-          element: <Manual />,
-        },
-        {
-          path: "result",
-          element: <Result />,
-        },
-      ],
-    },
-  ],
+const router = createHashRouter([
   {
-    basename: "/yt-graveyard-front/",
-  }
-);
+    path: "/",
+    element: <App />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "",
+        element: (
+          <GoogleOAuthProvider clientId="227087509653-vebn36qaass89cpfm6q76n2ri0vevvtk.apps.googleusercontent.com">
+            <Start />
+          </GoogleOAuthProvider>
+        ),
+      },
+      {
+        path: "manual",
+        element: <Manual />,
+      },
+      {
+        path: "result",
+        element: <Result />,
+      },
+    ],
+  },
+]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(<RouterProvider router={router} />);
