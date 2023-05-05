@@ -31,7 +31,7 @@ const Result = () => {
       let myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
 
-      const serverResponse = await fetch("https://yt-graveyard-server-grjdh.vercel.app", {
+      const serverResponse = await fetch("http://localhost:3000", {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify(state),
@@ -117,6 +117,33 @@ const Result = () => {
     else return renderGrid();
   };
 
+  const renderError = () => {
+    switch (error) {
+      case "subscriberNotFound":
+        return <ErrorResponse text="Channel with this channel ID does not exist." />;
+      case "subscriptionForbidden":
+        return <ErrorResponse text="You forgot to make your subscriptions public." />;
+      case "subscriptionsNotFound":
+        return (
+          <ErrorResponse text="Sorry, but we couldn't find your subscriptions. Either you don't have them, or some unknown error has occurred. If the latter, then please try logging in with your Google Account instead." />
+        );
+      case "quotaExceeded":
+        const whenQuotaResetsInPST = DateTime.fromObject({ hour: 0, minute: 0, second: 0 }, { zone: "pst" });
+        const whenQuotaResetsInLocal = whenQuotaResetsInPST.toLocal().toLocaleString(DateTime.TIME_SIMPLE);
+        return (
+          <ErrorResponse
+            text={
+              "Sorry, but it looks like we exceeded our API quota. Please, try again after " +
+              whenQuotaResetsInLocal +
+              " in your local time."
+            }
+          />
+        );
+      default:
+        return <ErrorResponse text="Something went wrong. Please try again later." />;
+    }
+  };
+
   //actual content
   const renderGrid = () => {
     return (
@@ -178,29 +205,6 @@ const Result = () => {
         </div>
       </div>
     );
-  };
-
-  const renderError = () => {
-    switch (error) {
-      case "subscriberNotFound":
-        return <ErrorResponse text="Channel with this channel ID does not exist." />;
-      case "subscriptionForbidden":
-        return <ErrorResponse text="You forgot to make your subscriptions public." />;
-      case "quotaExceeded":
-        const whenQuotaResetsInPST = DateTime.fromObject({ hour: 0, minute: 0, second: 0 }, { zone: "pst" });
-        const whenQuotaResetsInLocal = whenQuotaResetsInPST.toLocal().toLocaleString(DateTime.TIME_SIMPLE);
-        return (
-          <ErrorResponse
-            text={
-              "Sorry, but it looks like we exceeded our API quota. Please, try again after " +
-              whenQuotaResetsInLocal +
-              " in your local time."
-            }
-          />
-        );
-      default:
-        return <ErrorResponse text="Something went wrong. Please try again later." />;
-    }
   };
 
   return renderContent();
