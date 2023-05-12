@@ -29,7 +29,10 @@ const Card = ({
         rel="noreferrer"
       >
         <div className="channel-warper">
-          <img src={channelThumbnail} />
+          <img
+            src={channelThumbnail}
+            alt="Channel avatar"
+          />
           <h2 className="text-overflow">{channelTitle}</h2>
         </div>
       </a>
@@ -43,7 +46,10 @@ const Card = ({
         >
           <div className="video-warper">
             <div className="thumbnail">
-              <img src={lastVideoThumbnail} />
+              <img
+                src={lastVideoThumbnail}
+                alt="Last uploaded video thumbnail"
+              />
               <p className="video-date">{formatDate(lastVideoDate)}</p>
             </div>
             <p className="text-overflow">{lastVideoTitle}</p>
