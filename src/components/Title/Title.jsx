@@ -11,8 +11,12 @@ const Title = ({ text = "YouTube Graveyard", coffin = false }) => {
       <Link
         to="/"
         reloadDocument
+        aria-label="Return to the Start page"
       >
-        <img src={coffin ? coffin_error : grave_main} />
+        <img
+          src={coffin ? coffin_error : grave_main}
+          alt="Logo"
+        />
       </Link>
       <h1>{text}</h1>
     </header>
