@@ -144,7 +144,7 @@ const Result = () => {
   //actual content
   const renderGrid = () => {
     return (
-      <div className="result-page">
+      <main className="result-page">
         <p>Here are YouTube channels that haven't released a video in at least...</p>
         <div className="controls">
           <NumberInput
@@ -160,7 +160,7 @@ const Result = () => {
             options={dateOptions}
           ></Dropdown>
           <Dropdown
-            text="Sort by..."
+            text="Sort..."
             onChange={e => setIsAscending(e.target.value)}
             value={isAscending}
             options={sortOptions}
@@ -200,7 +200,7 @@ const Result = () => {
             />
           ))}
         </div>
-      </div>
+      </main>
     );
   };
 

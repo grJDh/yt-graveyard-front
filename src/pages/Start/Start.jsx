@@ -35,9 +35,9 @@ const Start = () => {
         return <Loading text="Checking server availability..." />;
       default:
         return (
-          <div className="manual-steps">
+          <main className="manual-steps">
             <p>Sorry, but the server is not responding. Please try again later!</p>
-          </div>
+          </main>
         );
     }
   };
@@ -55,7 +55,7 @@ const Start = () => {
 
   const renderContent = () => {
     return (
-      <div className="start-container">
+      <main className="start-container">
         <p>See which YouTube channels you are subscribed to are probably dead 💀</p>
         <Button
           text="Continue with Google Account"
@@ -66,7 +66,7 @@ const Start = () => {
           to="/manual"
           text="Continue with Channel ID"
         />
-      </div>
+      </main>
     );
   };
 

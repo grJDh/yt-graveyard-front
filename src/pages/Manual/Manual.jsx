@@ -28,7 +28,7 @@ const Manual = () => {
   };
 
   return (
-    <div className="manual-steps">
+    <main className="manual-steps">
       <p>
         If you don't want to log in to your Google Account, then in order for the site to see your subscriptions you
         need to <span className="highlight">make them public</span>. You can do this by following{" "}
@@ -106,7 +106,7 @@ const Manual = () => {
           alt='"Keep all my subscriptions private" setting'
         />
       </Spoiler>
-    </div>
+    </main>
   );
 };
 

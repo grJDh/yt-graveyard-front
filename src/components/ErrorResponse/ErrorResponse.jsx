@@ -4,7 +4,7 @@ import "./ErrorResponse.css";
 
 const ErrorResponse = ({ text }) => {
   return (
-    <div className="error-response-container">
+    <main className="error-response-container">
       <p>{text}</p>
       <LinkButton
         main
@@ -12,7 +12,7 @@ const ErrorResponse = ({ text }) => {
         to="/"
         reload
       />
-    </div>
+    </main>
   );
 };
 

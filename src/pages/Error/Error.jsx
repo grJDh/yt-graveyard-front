@@ -14,7 +14,7 @@ const Error = () => {
         text="Oops! Something went wrong"
         coffin
       />
-      <div className="error-text">
+      <main className="error-text">
         <p className="error">Error: {error.statusText || error.message}</p>
         <LinkButton
           main
@@ -22,7 +22,7 @@ const Error = () => {
           text="Return to Start"
           to="/"
         />
-      </div>
+      </main>
     </div>
   );
 };

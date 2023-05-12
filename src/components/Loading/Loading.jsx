@@ -7,7 +7,7 @@ import coffin_floor from "../../assets/loading/coffin_floor.svg";
 
 const Loading = ({ text }) => {
   return (
-    <div className="loading-container">
+    <main className="loading-container">
       <p>{text}</p>
       <div className="loading-anim">
         <img
@@ -24,7 +24,7 @@ const Loading = ({ text }) => {
         />
         <img src={coffin_floor} />
       </div>
-    </div>
+    </main>
   );
 };
 
