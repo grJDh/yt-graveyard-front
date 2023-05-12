@@ -7,7 +7,7 @@ import "./Title.css";
 
 const Title = ({ text = "YouTube Graveyard", coffin = false }) => {
   return (
-    <div className="title">
+    <header className="title">
       <Link
         to="/"
         reloadDocument
@@ -15,7 +15,7 @@ const Title = ({ text = "YouTube Graveyard", coffin = false }) => {
         <img src={coffin ? coffin_error : grave_main} />
       </Link>
       <h1>{text}</h1>
-    </div>
+    </header>
   );
 };
 
