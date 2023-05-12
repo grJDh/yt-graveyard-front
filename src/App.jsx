@@ -7,7 +7,7 @@ import Title from "./components/Title/Title";
 
 import "./App.css";
 const App = () => {
-  //dirty trick
+  //dirty trick, I know
   useEffect(() => {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);

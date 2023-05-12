@@ -112,9 +112,9 @@ const Result = () => {
   const renderContent = () => {
     if (!state)
       return <ErrorResponse text="You didn't log in to your Google Account or provided Youtube channel ID!" />;
-    else if (isFetching) return <Loading text="Walking to graveyard..." />;
-    else if (error) return renderError();
-    else return renderGrid();
+    if (isFetching) return <Loading text="Walking to graveyard..." />;
+    if (error) return renderError();
+    return renderGrid();
   };
 
   const renderError = () => {
@@ -128,15 +128,12 @@ const Result = () => {
           <ErrorResponse text="Sorry, but we couldn't find your subscriptions. Either you don't have them, or some unknown error has occurred. If the latter, then please try logging in with your Google Account instead." />
         );
       case "quotaExceeded":
-        const whenQuotaResetsInPST = DateTime.fromObject({ hour: 0, minute: 0, second: 0 }, { zone: "pst" });
-        const whenQuotaResetsInLocal = whenQuotaResetsInPST.toLocal().toLocaleString(DateTime.TIME_SIMPLE);
+        const whenQuotaResets = DateTime.fromObject({ hour: 0, minute: 0, second: 0 }, { zone: "pst" })
+          .toLocal()
+          .toLocaleString(DateTime.TIME_SIMPLE);
         return (
           <ErrorResponse
-            text={
-              "Sorry, but it looks like we exceeded our API quota. Please, try again after " +
-              whenQuotaResetsInLocal +
-              " in your local time."
-            }
+            text={`Sorry, but it looks like we exceeded our API quota. Please try again after ${whenQuotaResets} in your local time.`}
           />
         );
       default:
