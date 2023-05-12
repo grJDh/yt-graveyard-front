@@ -2,17 +2,10 @@ import "./Spoiler.css";
 
 const Spoiler = ({ children, title }) => {
   return (
-    <div className="spoiler-container">
-      <label className="spoiler-label">
-        <div className="spoiler-text">
-          <div className="spoiler-qm">?</div>
-          <p>{title}</p>
-        </div>
-        <input type="checkbox" />
-      </label>
-
+    <details className="spoiler-wrapper">
+      <summary className="spoiler-title">{title}</summary>
       <div className="spoiler-content">{children}</div>
-    </div>
+    </details>
   );
 };
 

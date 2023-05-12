@@ -1,50 +1,48 @@
-.spoiler-container {
+.spoiler-wrapper {
   width: 100%;
 }
 
-.spoiler-label {
-  cursor: pointer;
-}
-
-.spoiler-label:hover div,
-.spoiler-label:hover p {
-  color: var(--clr-highlight);
-  border-color: var(--clr-highlight);
-}
-
-.spoiler-label:has(input[type="checkbox"]:checked) div {
-  color: var(--clr-highlight);
-  border-color: var(--clr-highlight);
-}
-
-.spoiler-text {
+.spoiler-title {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
+  list-style: none;
+  color: var(--clr-text);
+  font-size: 1.5rem;
 }
 
-.spoiler-label .spoiler-text p {
-  text-align: left;
-}
-
-.spoiler-qm {
+.spoiler-title::before {
+  content: "?";
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid white;
+  border: 2px solid var(--clr-text);
   border-radius: 50%;
-  min-width: 20px;
+  width: 20px;
   height: 20px;
-  color: white;
+  color: var(--clr-text);
+  font-size: 1.2rem;
   font-weight: 600;
 }
 
-.spoiler-container input[type="checkbox"] {
-  display: none;
+.spoiler-title:hover,
+.spoiler-title:hover::before {
+  border-color: var(--clr-highlight);
+  color: var(--clr-highlight);
+}
+
+.spoiler-wrapper[open] .spoiler-title::before {
+  color: var(--clr-highlight);
+  border-color: var(--clr-highlight);
+}
+
+.spoiler-wrapper .spoiler-content p {
+  text-align: left;
 }
 
 .spoiler-content {
-  display: none;
+  display: flex;
   gap: 0.5rem;
   flex-direction: column;
   margin-top: 1rem;
@@ -53,12 +51,4 @@
   border: 1px solid white;
   border-radius: 3px;
   padding: 1rem;
-}
-
-.spoiler-container .spoiler-content p {
-  text-align: left;
-}
-
-.spoiler-container label:has(input[type="checkbox"]:checked) ~ .spoiler-content {
-  display: flex;
 }
