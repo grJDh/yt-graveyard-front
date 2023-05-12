@@ -169,7 +169,7 @@ const Result = () => {
         {filteredAndSortedData.length === 0 ? (
           <p className="no-results highlight">No results found!</p>
         ) : (
-          <div className="cards-grid">
+          <ul className="cards-grid">
             {(isAscending === "from new to old" ? [...filteredAndSortedData].reverse() : filteredAndSortedData).map(
               (element, i) => (
                 <Card
@@ -184,7 +184,7 @@ const Result = () => {
                 />
               )
             )}
-          </div>
+          </ul>
         )}
         {failedToLoadChannels.length > 0 && (
           <p>...and here are the channels where we couldn't find the latest video :(</p>

@@ -21,7 +21,7 @@ const Card = ({
   };
 
   return (
-    <div className="card">
+    <li className="card">
       <a
         href={"https://www.youtube.com/channel/" + channelID}
         className="a-warper"
@@ -56,7 +56,7 @@ const Card = ({
           </div>
         </a>
       )}
-    </div>
+    </li>
   );
 };
 
