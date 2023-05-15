@@ -189,7 +189,7 @@ const Result = () => {
         {failedToLoadChannels.length > 0 && (
           <p>...and here are the channels where we couldn't find the latest video :(</p>
         )}
-        <div className="cards-grid">
+        <ul className="cards-grid">
           {failedToLoadChannels.sort().map((element, i) => (
             <Card
               failed
@@ -199,7 +199,7 @@ const Result = () => {
               channelTitle={element.channelTitle}
             />
           ))}
-        </div>
+        </ul>
       </main>
     );
   };

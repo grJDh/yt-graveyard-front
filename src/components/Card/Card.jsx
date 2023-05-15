@@ -27,11 +27,12 @@ const Card = ({
         className="a-warper"
         target="_blank"
         rel="noreferrer"
+        // aria-label={"Go to " + channelTitle + "'s channel page"}
       >
         <div className="channel-warper">
           <img
             src={channelThumbnail}
-            alt="Channel avatar"
+            alt={channelTitle + "'s channel avatar"}
           />
           <h2 className="text-overflow">{channelTitle}</h2>
         </div>
@@ -43,12 +44,13 @@ const Card = ({
           className="a-warper"
           target="_blank"
           rel="noreferrer"
+          // aria-label={"Go to " + channelTitle + "'s last uploaded video"}
         >
           <div className="video-warper">
             <div className="thumbnail">
               <img
                 src={lastVideoThumbnail}
-                alt="Last uploaded video thumbnail"
+                alt={channelTitle + "'s last uploaded video thumbnail"}
               />
               <p className="video-date">{formatDate(lastVideoDate)}</p>
             </div>
