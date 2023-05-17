@@ -16,7 +16,7 @@ const Start = () => {
   useEffect(() => {
     const checkServer = async () => {
       try {
-        const response = await fetch("http://localhost:3000");
+        const response = await fetch("https://yt-graveyard-server-grjdh.vercel.app");
         setServerStatus(response.status);
       } catch (error) {
         console.log(error);
