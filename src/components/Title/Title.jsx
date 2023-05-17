@@ -17,8 +17,8 @@ const Title = ({ text = "YouTube Graveyard", coffin = false }) => {
           src={coffin ? coffin_error : grave_main}
           alt="Logo"
         />
+        <h1>{text}</h1>
       </Link>
-      <h1>{text}</h1>
     </header>
   );
 };

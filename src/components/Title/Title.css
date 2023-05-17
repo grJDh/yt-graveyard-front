@@ -1,4 +1,4 @@
-.title {
+.title a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,32 +6,29 @@
   margin-top: 1rem;
 }
 
-.title a {
-  max-width: 4rem;
-}
-
-.title h1 {
+.title a h1 {
   font-family: "Nanum Myeongjo", serif;
   font-size: 1.9rem;
   text-align: center;
 }
 
-@media (min-width: 530px) {
-  .title a {
-    max-width: 5rem;
-  }
+.title a img {
+  max-width: 5rem;
+}
 
-  .title h1 {
+@media (min-width: 530px) {
+  .title a h1 {
     font-size: 3rem;
   }
 }
 
 @media (min-width: 700px) {
-  .title {
+  .title a {
     flex-direction: column;
+    max-width: 30rem;
   }
 
-  .title a {
+  .title a img {
     max-width: 7.5rem;
   }
 

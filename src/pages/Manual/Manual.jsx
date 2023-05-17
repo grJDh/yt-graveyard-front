@@ -31,17 +31,18 @@ const Manual = () => {
     <main className="manual-steps">
       <p>
         If you don't want to log in to your Google Account, then in order for the site to see your subscriptions you
-        need to <span className="highlight">make them public</span>. You can do this by following{" "}
+        need to <span className="highlight">make them public</span>.
+      </p>
+      <p>
+        You can do this by following{" "}
         <a
-          href="https://www.youtube.com/account_privacy"
           className="highlight"
+          href="https://www.youtube.com/account_privacy"
         >
           this link
         </a>{" "}
-        and turning off the <span className="highlight">"Keep all my subscriptions private"</span> option. Don't worry -
-        you can turn it back on later!
+        and turning off the "Keep all my subscriptions private" option. Don't worry — you can turn it back on later!
       </p>
-      {/* <p>After that, enter your channel ID here:</p> */}
 
       <form
         className="manual-input"
@@ -65,25 +66,12 @@ const Manual = () => {
 
       <Spoiler title="Where can I find my channel ID?">
         <p>
-          Follow{" "}
-          <a
-            href="https://studio.youtube.com/"
-            className="highlight"
-          >
-            this link
-          </a>{" "}
-          and look at the adress bar. See a bunch of characters after "channel/" that starts with "UC"? This is your
-          channel ID.{" "}
+          Follow <a href="https://studio.youtube.com/">this link</a> and look at the adress bar. See a bunch of
+          characters after "channel/" that starts with "UC"? This is your channel ID.{" "}
         </p>
         <p>
           <span className="highlight">If you don't have a channel</span>, then you can use{" "}
-          <Link
-            className="highlight"
-            to="/"
-          >
-            your Google Account
-          </Link>{" "}
-          instead
+          <Link to="/">your Google Account</Link> instead
         </p>
         <img
           src={channel_id}
@@ -93,13 +81,7 @@ const Manual = () => {
 
       <Spoiler title="Where can I make my subscriptions public?">
         <p>
-          Follow{" "}
-          <a
-            href="https://www.youtube.com/account_privacy"
-            className="highlight"
-          >
-            this link
-          </a>{" "}
+          Follow <a href="https://www.youtube.com/account_privacy">this link</a>{" "}
         </p>
         <img
           src={yt_privacy}

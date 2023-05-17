@@ -9,3 +9,5 @@ If you are afraid to enter your data, then in the channel ID field you can enter
 Requests to the Google API are made from the backend (NodeJS) that runs on Vercel.
 
 [Server repository](https://github.com/grJDh/yt-graveyard-server) is private because of the API keys.
+
+Design: [Liapina Alice](https://www.behance.net/aliceliapina)

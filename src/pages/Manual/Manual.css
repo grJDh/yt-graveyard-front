@@ -18,6 +18,9 @@
 .manual-steps a {
   text-decoration: underline;
 }
+.manual-steps a:hover {
+  color: var(--clr-highlight-active);
+}
 
 .highlight {
   color: var(--clr-highlight);
